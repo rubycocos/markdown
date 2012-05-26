@@ -1,0 +1,9 @@
+# ignore komodo project files
+*.kpf
+
+# ignore generated folders 
+pkg/
+doc/
+
+# ignore jekyll generated output
+site/_site/
