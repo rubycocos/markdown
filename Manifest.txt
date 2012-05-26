@@ -1,6 +1,6 @@
-History.rdoc
+History.markdown
 Manifest.txt
-README.rdoc
+README.markdown
 Rakefile
 lib/markdown_select.rb
 lib/markdown_select/config.rb

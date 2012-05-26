@@ -15,10 +15,8 @@ Hoe.spec 'markdown_select' do
     ['kramdown','>= 0.13.6']
   ]
   
-  self.remote_rdoc_dir = 'doc'
-  
-  # switch extension to .rdoc for gihub formatting
-  self.readme_file  = 'README.rdoc'
-  self.history_file = 'History.rdoc'
+  # switch extension to .markdown for gihub formatting
+  self.readme_file  = 'README.markdown'
+  self.history_file = 'History.markdown'
   
 end
