@@ -1,6 +1,5 @@
 
-LIB_PATH = File.expand_path( File.dirname(__FILE__) )
-$LOAD_PATH.unshift(LIB_PATH) 
+$LOAD_PATH.unshift( File.expand_path( File.dirname(__FILE__) ) )
 
 # core and stlibs
 
@@ -18,6 +17,6 @@ require 'markdown_select/markdown_select'
 
 module MarkdownSelect
 
-  VERSION = '0.1.2'
+  VERSION = '0.1.3'
   
 end
