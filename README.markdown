@@ -1,8 +1,5 @@
 # Markdown Select - Use Your Markdown Library of Choice
 
-
-## Source
-
 * [geraldb.github.com/markdown_select](http://geraldb.github.com/markdown_select)
 
 ## Description
