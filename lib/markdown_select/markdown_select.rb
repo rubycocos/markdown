@@ -44,6 +44,19 @@ module MarkdownSelect
     puts "  Found #{@@markdown_libs.length} Markdown libraries: #{@@markdown_libs.join(', ')}"
   end
    
+  def self.lib
+    if @@markdown_config.nil?
+      @@markdown_config = Config.new
+      @@markdown_config.load
+      
+      load_markdown_libs
+    
+      # lets you use differnt options/converters for a single markdown lib
+      @@markdown_mn = @@markdown_config.markdown_to_html_method( @@markdown_libs.first )
+    end
+
+    @@markdown_libs.first
+  end
   
   def self.new( content, options={} )
 
@@ -51,9 +64,9 @@ module MarkdownSelect
     ##   lets you change markdown engine/converter for every call
     ##   e.g. lets you add config properties (as headers) to your document (for example)
     
-    if @@markdown_config.nil?          
+    if @@markdown_config.nil?
       @@markdown_config = Config.new
-      @@markdown_config.load      
+      @@markdown_config.load
       
       load_markdown_libs
     
