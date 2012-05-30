@@ -1,6 +1,6 @@
 # Markdown Engine Wrapper - Use Your Markdown Library of Choice
 
-* [geraldb.github.com/markdown_select](http://geraldb.github.com/markdown)
+* [geraldb.github.com/markdown](http://geraldb.github.com/markdown)
 
 ## Description
 
