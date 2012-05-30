@@ -17,6 +17,6 @@ require 'markdown_select/markdown_select'
 
 module MarkdownSelect
 
-  VERSION = '0.1.3'
+  VERSION = '0.0.1'
   
 end

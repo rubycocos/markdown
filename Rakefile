@@ -1,11 +1,11 @@
 require 'hoe'
 require './lib/markdown_select.rb'
 
-Hoe.spec 'markdown_select' do
+Hoe.spec 'markdown' do
   
   self.version = MarkdownSelect::VERSION
   
-  self.summary = 'Markdown Select - Use Your Markdown Library of Choice'
+  self.summary = 'Markdown - Use Your Markdown Library of Choice'
   self.url     = 'http://geraldb.github.com/markdown_select'
   
   self.author  = 'Gerald Bauer'
