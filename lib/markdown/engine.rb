@@ -1,4 +1,4 @@
-module MarkdownSelect
+module Markdown
   module Engine
    
     def pandoc_ruby_to_html( content )
@@ -56,4 +56,4 @@ module MarkdownSelect
     end      
   
   end # module Engine
-end # module MarkdownSelect  
+end # module Markdown

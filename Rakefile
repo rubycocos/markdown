@@ -1,12 +1,12 @@
 require 'hoe'
-require './lib/markdown_select.rb'
+require './lib/markdown.rb'
 
 Hoe.spec 'markdown' do
   
-  self.version = MarkdownSelect::VERSION
+  self.version = Markdown::VERSION
   
-  self.summary = 'Markdown - Use Your Markdown Library of Choice'
-  self.url     = 'http://geraldb.github.com/markdown_select'
+  self.summary = 'Markdown Engine Wrapper - Use Your Markdown Library of Choice'
+  self.url     = 'http://geraldb.github.com/markdown'
   
   self.author  = 'Gerald Bauer'
   self.email   = 'webslideshow@googlegroups.com'

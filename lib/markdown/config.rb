@@ -1,4 +1,4 @@
-module MarkdownSelect
+module Markdown
 
   class Config
   
@@ -39,7 +39,8 @@ module MarkdownSelect
 # also note for now the first present markdown library gets used
 #  the search order is first come, first serve, that is: rdiscount, rpeg-markdown, maruku, bluecloth, kramdown (fallback, always present)
 
-  BUILTIN_LIBS = [
+
+  DEFAULT_LIBS = [
     'pandoc-ruby',
     'rdiscount',
     'rpeg-markdown',
@@ -55,10 +56,12 @@ module MarkdownSelect
       ## todo: allow single lib para instead of libs    
       ##  todo: allow ENV setting markdown_[select]_lib=xxxx
     
+      ## todo/fix: use lookup with config parent cascade
+    
       user_libs = @hash.fetch( 'user', {} ).fetch( 'libs', [] )
     
-      user_libs.length > 0 ? user_libs : BUILTIN_LIBS
+      user_libs.length > 0 ? user_libs : DEFAULT_LIBS
     end
 
   end # class Config
-end # module MarkdownSelect
+end # module Markdown

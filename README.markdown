@@ -1,11 +1,11 @@
-# Markdown Select - Use Your Markdown Library of Choice
+# Markdown Engine Wrapper - Use Your Markdown Library of Choice
 
-* [geraldb.github.com/markdown_select](http://geraldb.github.com/markdown_select)
+* [geraldb.github.com/markdown_select](http://geraldb.github.com/markdown)
 
 ## Description
 
-The Markdown Select (`markdown_select`) Ruby gem lets you use your markdown library of choice.
-Preconfigured markdown libraries include:
+The Markdown Engine Wrapper (`markdown`) Ruby gem lets you use
+your markdown library of choice. Preconfigured markdown libraries include:
 
 * `kramdown`
 * `bluecloth`
@@ -17,16 +17,16 @@ Preconfigured markdown libraries include:
 
 ## Usage
 
-    require 'markdown_select'
+    require 'markdown'
     
-    MarkdownSelect.new( 'Hello World' ).to_html
+    Markdown.new( 'Hello World' ).to_html
 
 
 ## Install
 
 Just install the gem:
 
-    $ gem install markdown_select
+    $ gem install markdown
 
 
 ## Questions? Comments?
@@ -38,5 +38,5 @@ Thanks!
 
 ## License
 
-The `markdown_select` scripts are dedicated to the public domain.
+The `markdown` scripts are dedicated to the public domain.
 Use it as you please with no restrictions whatsoever.

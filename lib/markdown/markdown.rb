@@ -1,4 +1,4 @@
-module MarkdownSelect
+module Markdown
  
   class Proxy   
 
@@ -77,4 +77,4 @@ module MarkdownSelect
     Proxy.new( @@markdown_libs.first, @@markdown_mn, content, options )
   end
 
-end # module MarkdownSelect
+end # module Markdown

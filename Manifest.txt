@@ -2,7 +2,7 @@ History.markdown
 Manifest.txt
 README.markdown
 Rakefile
-lib/markdown_select.rb
-lib/markdown_select/config.rb
-lib/markdown_select/engine.rb
-lib/markdown_select/markdown_select.rb
+lib/markdown.rb
+lib/markdown/config.rb
+lib/markdown/engine.rb
+lib/markdown/markdown.rb
