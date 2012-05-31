@@ -1,6 +1,6 @@
 module Markdown
  
-  class Proxy
+  class Wrapper
 
     def initialize( lib, mn, content, options={} )
       @lib     = lib      
@@ -20,7 +20,8 @@ module Markdown
 
     include Engine
     
-  end # class Proxy
+  end # class Wrapper
+
 
 
   @@config = nil
@@ -28,14 +29,9 @@ module Markdown
   def self.lib
     if @@config.nil?
       @@config = Config.new
-      
-      load_markdown_libs
-    
-      # lets you use differnt options/converters for a single markdown lib
-      @@markdown_mn = @@markdown_config.markdown_to_html_method( @@markdown_libs.first )
     end
 
-    @@markdown_libs.first
+    @@config.markdown_lib
   end
   
   def self.new( content, options={} )
@@ -44,17 +40,13 @@ module Markdown
     ##   lets you change markdown engine/converter for every call
     ##   e.g. lets you add config properties (as headers) to your document (for example)
     
-    if @@markdown_config.nil?
-      @@markdown_config = Config.new
-      @@markdown_config.load
-      
-      load_markdown_libs
-    
-      # lets you use differnt options/converters for a single markdown lib
-      @@markdown_mn = @@markdown_config.markdown_to_html_method( @@markdown_libs.first )    
+    if @@config.nil?
+      @@config = Config.new
     end
 
-    Proxy.new( @@markdown_libs.first, @@markdown_mn, content, options )
+    lib = @@config.markdown_lib
+    mn  = @@config.markdown_to_html_method( lib ) # lets you use differnt options/converters for a single markdown lib   
+    Wrapper.new( lib, mn, content, options )
   end
 
 end # module Markdown
