@@ -1,6 +1,6 @@
 module Markdown
  
-  class Proxy   
+  class Proxy
 
     def initialize( lib, mn, content, options={} )
       @lib     = lib      
@@ -22,32 +22,12 @@ module Markdown
     
   end # class Proxy
 
-  @@markdown_config = nil    
-  @@markdown_libs   = []
-  @@markdown_mn     = nil
-  
-  def self.load_markdown_libs
 
-    # check for available markdown libs/gems
-    # try to require each lib and remove any not installed
+  @@config = nil
 
-    @@markdown_config.known_markdown_libs.each do |lib|
-      begin
-        require lib
-        @@markdown_libs << lib
-      rescue LoadError => ex
-        ## todo: use logger.debug  instead of puts        
-        puts "Markdown library #{lib} not found. Use gem install #{lib} to install."
-      end
-    end
-
-    puts "  Found #{@@markdown_libs.length} Markdown libraries: #{@@markdown_libs.join(', ')}"
-  end
-   
   def self.lib
-    if @@markdown_config.nil?
-      @@markdown_config = Config.new
-      @@markdown_config.load
+    if @@config.nil?
+      @@config = Config.new
       
       load_markdown_libs
     
