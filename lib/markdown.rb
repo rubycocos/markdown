@@ -15,13 +15,13 @@ require 'markdown/engines/maruku'
 require 'markdown/engines/pandoc_ruby'
 require 'markdown/engines/rdiscount'
 require 'markdown/engines/rpeg_markdown'
-require 'markdown/markdown'
+require 'markdown/wrapper'
 
 
 ## todo: add main for bin (see slideshow)
 
 module Markdown
 
-  VERSION = '0.0.1'
+  VERSION = '0.0.2'
   
 end

@@ -62,8 +62,8 @@ Example:
 ## Converters
 
 The Markdown Wrapper lets you configure different converter methods for each markdown engine. By default
-the converter method **lib**_to_html gets used
-(for example, the default converter for kramdown is `kramdown_to_html`).
+the converter method *<lib>*_to_html gets used
+(for example, the default converter for `kramdown` is `kramdown_to_html`).
 
 ...
 
@@ -76,7 +76,7 @@ Example:
 
 ## Real World Usage
 
-The [`slideshow` (also known as Slide Show (S9))](http://slideshow.rubyforge.org) gem
+The [`slideshow`](http://slideshow.rubyforge.org) (also known as Slide Show (S9)) gem
 that lets you create slide shows
 and author slides in plain text using a wiki-style markup language that's easy-to-write and easy-to-read
 ships with the `markdown` gem.
@@ -84,7 +84,7 @@ ships with the `markdown` gem.
 
 ## Alternatives
 
-[`multi_markdown`](https://github.com/postmodern/multi_markdown) Gem by Hal Brodigan 
+[`multi_markdown`](https://github.com/postmodern/multi_markdown) gem by Hal Brodigan 
 
 
 ## Questions? Comments?
