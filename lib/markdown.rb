@@ -4,6 +4,8 @@ $LOAD_PATH.unshift( File.expand_path( File.dirname(__FILE__) ) )
 # core and stlibs
 
 require 'yaml'
+require 'pp'
+require 'logger'
 
 
 # our own code

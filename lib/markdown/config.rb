@@ -39,7 +39,10 @@ module Markdown
     end
     
     def self.load_file( path, parent=nil )
-      Props.new( YAML.load_file( path ), path, parent )
+      h = YAML.load_file( path )
+      puts "dump of >#{path}<:"      
+      pp h    # todo: add debug flag (turn off for default)
+      Props.new( h, path, parent )
     end
     
     def [](key)  get( key );  end
@@ -68,13 +71,16 @@ private
 # also note for now the first present markdown library gets used
 #  the search order is first come, first serve, that is: rdiscount, rpeg-markdown, maruku, bluecloth, kramdown (fallback, always present)
 
-  DEFAULTS = {
-    'libs' => [ 'pandoc-ruby',
-                'rdiscount',
-                'rpeg-markdown',
-                'maruku',
-                'bluecloth',
-                'kramdown' ] }
+#  DEFAULTS = {
+#    'libs' => [ 'pandoc-ruby',
+#                'rdiscount',
+#                'rpeg-markdown',
+#                'maruku',
+#                'bluecloth',
+#                'kramdown' ] }
+
+# note: make kramdown default engine
+DEFAULTS = { 'libs' => [ 'kramdown' ] }
 
   
     def initialize
@@ -82,7 +88,7 @@ private
 
       # check for user settings (markdown.yml) in home folder 
 
-      ## todo: use join path???
+      ## todo/fix: use join path???
       ## todo: use .markdown.yml?? or differnt name ??
       props_home_file = "#{Env.home}/markdown.yml"      
       if File.exists?( props_home_file )
