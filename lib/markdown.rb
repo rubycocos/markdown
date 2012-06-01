@@ -1,11 +1,13 @@
 
-$LOAD_PATH.unshift( File.expand_path( File.dirname(__FILE__) ) )
+$LOAD_PATH.unshift( File.expand_path( File.dirname(__FILE__)))
 
 # core and stlibs
 
 require 'yaml'
 require 'pp'
 require 'logger'
+require 'optparse'
+require 'fileutils'
 
 
 # our own code
@@ -18,12 +20,32 @@ require 'markdown/engines/pandoc_ruby'
 require 'markdown/engines/rdiscount'
 require 'markdown/engines/rpeg_markdown'
 require 'markdown/wrapper'
+require 'markdown/gen'
 
-
-## todo: add main for bin (see slideshow)
 
 module Markdown
 
-  VERSION = '0.0.2'
-  
-end
+  VERSION = '0.1.0'
+
+  # version string for generator meta tag (includes ruby version)
+  def self.banner
+    "Markdown #{VERSION} on Ruby #{RUBY_VERSION} (#{RUBY_RELEASE_DATE}) [#{RUBY_PLATFORM}]"
+  end
+
+  def self.main
+    
+    # allow env variable to set RUBYOPT-style default command line options
+    #   e.g. -o site 
+    markdownopt = ENV[ 'MARKDOWNOPT' ]
+    
+    args = []
+    args += markdownopt.split if markdownopt
+    args += ARGV.dup
+    
+    Gen.new.run(args)
+  end
+
+end  # module Markdown
+
+
+Markdown.main if __FILE__ == $0
