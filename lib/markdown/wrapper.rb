@@ -25,13 +25,16 @@ module Markdown
 
 
   @@config = nil
-
-  def self.lib
-    if @@config.nil?
-      @@config = Config.new
+  
+  def self.lib( value = nil )
+    if value.nil?    
+      if @@config.nil?
+        @@config = Config.new
+      end
+      @@config.markdown_lib
+    else
+      ## todo: lets you select your library
     end
-
-    @@config.markdown_lib
   end
   
   def self.new( content, options={} )
@@ -45,7 +48,7 @@ module Markdown
     end
 
     lib = @@config.markdown_lib
-    mn  = @@config.markdown_to_html_method( lib ) # lets you use differnt options/converters for a single markdown lib   
+    mn  = @@config.markdown_to_html_method # lets you use differnt options/converters for a single markdown lib   
     Wrapper.new( lib, mn, content, options )
   end
 

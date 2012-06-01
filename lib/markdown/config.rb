@@ -78,7 +78,7 @@ private
 
   
     def initialize
-      @props = @props_default = Props.new( DEFAULTS )
+      @props = @props_default = Props.new( DEFAULTS, 'DEFAULTS' )
 
       # check for user settings (markdown.yml) in home folder 
 
@@ -151,8 +151,9 @@ private
       @libs.first
     end
     
-    def markdown_to_html_method( lib )
-      opts = props.fetch( lib, {} )
+    def markdown_to_html_method
+      lib  = @libs.first
+      opts = @props.fetch( lib, {} )
       method = opts.fetch( 'converter', "#{lib.downcase}_to_html" )  # default to <lib>_to_html if converter prop not found    
       method.tr('-','_').to_sym
     end      
