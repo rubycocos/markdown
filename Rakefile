@@ -6,7 +6,9 @@ Hoe.spec 'markdown' do
   self.version = Markdown::VERSION
   
   self.summary = 'Markdown Engine Wrapper - Use Your Markdown Library of Choice'
-  self.url     = 'http://geraldb.github.com/markdown'
+  self.description = summary
+
+  self.urls    = ['http://geraldb.github.com/markdown']
   
   self.author  = 'Gerald Bauer'
   self.email   = 'webslideshow@googlegroups.com'

@@ -1,13 +1,14 @@
-$LOAD_PATH.unshift( File.expand_path( File.dirname( 'lib' ) ) )
+###
+# NB: for local testing run like:
+#
+# 1.8.x: ruby -Ilib -rrubygems test/test_kramdown.rb
+# 1.9.x: ruby -Ilib test/test_kramdown.rb
 
 # core and stlibs
 
 require 'test/unit'
 require 'logger'
 require 'pp'
-
-require 'rubygems'
-
 
 # our own code
 

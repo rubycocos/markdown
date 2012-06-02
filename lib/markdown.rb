@@ -1,5 +1,8 @@
-
-$LOAD_PATH.unshift( File.expand_path( File.dirname(__FILE__)))
+###
+# NB: for local testing run like:
+#
+# 1.8.x: ruby -Ilib -rrubygems lib/markdown.rb
+# 1.9.x: ruby -Ilib lib/markdown.rb
 
 # core and stlibs
 
@@ -25,7 +28,7 @@ require 'markdown/gen'
 
 module Markdown
 
-  VERSION = '0.1.0'
+  VERSION = '0.1.0.beta1'
 
   # version string for generator meta tag (includes ruby version)
   def self.banner

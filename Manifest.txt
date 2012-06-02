@@ -2,7 +2,15 @@ History.markdown
 Manifest.txt
 README.markdown
 Rakefile
+bin/markdown
 lib/markdown.rb
 lib/markdown/config.rb
-lib/markdown/engine.rb
-lib/markdown/markdown.rb
+lib/markdown/engines/bluecloth.rb
+lib/markdown/engines/kramdown.rb
+lib/markdown/engines/maruku.rb
+lib/markdown/engines/pandoc_ruby.rb
+lib/markdown/engines/rdiscount.rb
+lib/markdown/engines/rpeg_markdown.rb
+lib/markdown/gen.rb
+lib/markdown/wrapper.rb
+test/test_kramdown.rb
