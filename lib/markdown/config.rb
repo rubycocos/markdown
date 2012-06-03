@@ -1,67 +1,5 @@
 module Markdown
 
-  class Env
-    def self.home
-      path = if( ENV['HOME'] || ENV['USERPROFILE'] )
-               ENV['HOME'] || ENV['USERPROFILE']
-             elsif( ENV['HOMEDRIVE'] && ENV['HOMEPATH'] )
-               "#{ENV['HOMEDRIVE']}#{ENV['HOMEPATH']}"
-             else
-               begin
-                 File.expand_path('~')
-               rescue
-                 if File::ALT_SEPARATOR
-                   'C:/'
-                 else
-                   '/'
-                 end
-               end
-             end
-      
-      puts "env home=>#{path}<"
-      path
-    end
-    
-    def self.markdown_lib
-      ENV['MARKDOWN_LIB']
-    end    
-  end # class Env
-
-  class Props
-
-    attr_reader :path
-    attr_reader :parent
-    
-    def initialize( hash, path, parent=nil)
-      @hash   = hash
-      @path   = path
-      @parent = parent
-    end
-    
-    def self.load_file( path, parent=nil )
-      h = YAML.load_file( path )
-      puts "dump of >#{path}<:"      
-      pp h    # todo: add debug flag (turn off for default)
-      Props.new( h, path, parent )
-    end
-    
-    def [](key)  get( key );  end
-    
-    def fetch(key, default)
-      value = get( key )
-      value.nil? ? default : value
-    end
-
-private
-    def get( key )
-      value = @hash[ key.to_s ]
-      # if not found try lookup in parent hash
-      (value.nil? && parent) ? parent[key] : value
-    end
-    
-  end # class props
-
-
   class Config
 
 # note: only kramdown is listed as a dependency in gem specs (because it's Ruby only and, thus, easy to install)
@@ -80,7 +18,20 @@ private
 #                'kramdown' ] }
 
 # note: make kramdown default engine
-DEFAULTS = { 'libs' => [ 'kramdown' ] }
+
+DEFAULTS = { 'libs' => [
+                'kramdown' ],
+             'extnames' => [
+                '.markdown',
+                '.m',
+                '.mark',
+                '.mkdn',
+                '.md',
+                '.mdown',
+                '.markdn',
+                '.txt',
+                '.text' ]  # todo: check - add .wiki??? ext
+           }
 
   
     def initialize
@@ -107,7 +58,11 @@ DEFAULTS = { 'libs' => [ 'kramdown' ] }
       @libs   = []
       @mn     = nil   # markdown converter method name (mn) e.g. kramdown_to_html
       
-      require_markdown_libs()      
+      require_markdown_libs()
+    end
+
+    def markdown_extnames
+      @props.fetch( 'extnames', nil )
     end
 
     def known_markdown_libs

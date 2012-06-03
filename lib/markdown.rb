@@ -13,6 +13,17 @@ require 'optparse'
 require 'fileutils'
 
 
+# rubygems
+
+require 'props'   # manage properties/settings/env  
+
+class Env
+  def self.markdown_lib
+      ENV['MARKDOWN_LIB']
+  end    
+end # class Env
+
+
 # our own code
 
 require 'markdown/config'
@@ -28,7 +39,7 @@ require 'markdown/gen'
 
 module Markdown
 
-  VERSION = '0.1.0'
+  VERSION = '0.2.0.beta1'
 
   # version string for generator meta tag (includes ruby version)
   def self.banner

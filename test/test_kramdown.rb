@@ -18,7 +18,7 @@ require 'lib/markdown'
 class TestKramdown < Test::Unit::TestCase
   
   def setup
-    Markdown.lib( 'kramdown' )
+    Markdown.lib = 'kramdown'
   end
   
   def test_lib

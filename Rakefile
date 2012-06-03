@@ -14,6 +14,7 @@ Hoe.spec 'markdown' do
   self.email   = 'webslideshow@googlegroups.com'
   
   self.extra_deps = [
+    ['props','>= 0.1.0'],
     ['kramdown','>= 0.13.6']
   ]
   

@@ -26,15 +26,22 @@ module Markdown
 
   @@config = nil
   
-  def self.lib( value = nil )
-    if value.nil?    
-      if @@config.nil?
-        @@config = Config.new
-      end
-      @@config.markdown_lib
-    else
-      ## todo: lets you select your library
+  def self.lib=( value )
+      ## todo: lets you select your library    
+  end
+  
+  def self.lib
+    if @@config.nil?
+      @@config = Config.new
     end
+    @@config.markdown_lib
+  end
+  
+  def self.extnames
+    if @@config.nil?
+      @@config = Config.new
+    end
+    @@config.markdown_extnames
   end
   
   def self.new( content, options={} )

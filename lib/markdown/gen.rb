@@ -3,16 +3,12 @@ module Markdown
 
   class Opts
   
-    def initialize
-      @hash = {}
+    def output_path=(value)
+      @output_path = value
     end
-    
-    def put( key, value )
-      @hash[ key.to_s ] = value
-    end    
   
     def output_path
-      @hash.fetch( 'output', '.' )
+      @output_path ||= '.'
     end
 
   end # class Opts
@@ -28,18 +24,6 @@ module Markdown
       @logger.level = Logger::INFO
       @opts         = Opts.new
     end
-
-
-### fix/todo:
-#    make configureable
-    DEFAULT_MARKDOWN_EXTENSIONS = [
-      '.markdown',
-      '.m',
-      '.mark',
-      '.mkdn',
-      '.md',
-      '.txt',
-      '.text' ]
 
 
     def with_output_path( dest, output_path )
@@ -113,7 +97,7 @@ module Markdown
 
       return false if extname.empty?   # no extension
       
-      DEFAULT_MARKDOWN_EXTENSIONS.include?( extname.downcase )
+      Markdown.extnames.include?( extname.downcase )
     end
     
     def find_file_with_markdown_extension( fn )
@@ -122,7 +106,7 @@ module Markdown
       extname  = File.extname( fn )
       logger.debug "dirname=#{dirname}, basename=#{basename}, extname=#{extname}"
 
-      DEFAULT_MARKDOWN_EXTENSIONS.each do |e|
+      Markdown.extnames.each do |e|
         logger.debug "File.exists? #{dirname}/#{basename}#{e}"
         return "#{dirname}/#{basename}#{e}" if File.exists?( "#{dirname}/#{basename}#{e}" )
       end  # each extension (e)
@@ -186,7 +170,7 @@ module Markdown
         else  # check for existing file w/ missing extension
           file = find_file_with_markdown_extension( file_or_dir_or_pattern )
           if file.nil?
-            puts "  skipping missing file '#{file_or_dir_or_pattern}{#{DEFAULT_MARKDOWN_EXTENSIONS.join(',')}}'..."
+            puts "  skipping missing file '#{file_or_dir_or_pattern}{#{Markdown.extnames.join(',')}}'..."
           else
             logger.debug "  adding file '#{file}'..."
             filtered_files << file
@@ -202,7 +186,7 @@ module Markdown
     
         cmd.banner = "Usage: markdown [options] name"
     
-        cmd.on( '-o', '--output PATH', 'Output Path' ) { |s| opts.put( 'output', s ) }
+        cmd.on( '-o', '--output PATH', 'Output Path' ) { |path| opts.output_path = path }
 
         # todo: find different letter for debug trace switch (use v for version?)
         cmd.on( "-v", "--verbose", "Show debug trace" )  do
@@ -210,22 +194,26 @@ module Markdown
            logger.level = Logger::DEBUG
         end
  
-   ## todo: add #{Markdown.lib} to help message?? yes/no
  
+        usage =<<EOS
+
+markdown - Lets you convert plain text documents (#{Markdown.extnames.join(', ')}) to hypertext (.html) with your Markdown engine of choice (#{Markdown.lib}).
+
+#{cmd.help}
+
+Examples:
+  markdown                   # Process all documents in working folder (that is, .)
+  markdown ruby_tut          # Process document or folder using Markdown
+  markdown ruby_tut.text     # Process document using Markdown
+  markdown -o site ruby_tut  # Output documents to site folder
+
+Further information:
+  http://geraldb.github.com/markdown
+  
+EOS
+
         cmd.on_tail( "-h", "--help", "Show this message" ) do
-           puts 
-           puts "markdown - Lets you convert plain text documents (#{DEFAULT_MARKDOWN_EXTENSIONS.join(', ')}) to hypertext (.html) with your Markdown engine of choice."
-           puts
-           puts cmd.help
-           puts
-           puts "Examples:"
-           puts "  markdown                   # Process all documents in working folder (that is, .)"
-           puts "  markdown ruby_tut          # Process document or folder using Markdown"
-           puts "  markdown ruby_tut.text     # Process document using Markdown"
-           puts "  markdown -o site ruby_tut  # Output documents to site folder"
-           puts
-           puts "Further information:"
-           puts "  http://geraldb.github.com/markdown" 
+           puts usage
            exit
         end
       end
