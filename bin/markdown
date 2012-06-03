@@ -12,8 +12,6 @@
 #    % chmod a+x bin/markdown
 #
 
-
-require 'rubygems'
 require 'markdown'
 
 Markdown.main
