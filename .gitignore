@@ -7,3 +7,6 @@ doc/
 
 # ignore jekyll generated output
 site/_site/
+
+# ignore generated test html pages
+*.html
