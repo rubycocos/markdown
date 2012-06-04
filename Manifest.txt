@@ -10,6 +10,7 @@ lib/markdown/engines/kramdown.rb
 lib/markdown/engines/maruku.rb
 lib/markdown/engines/pandoc_ruby.rb
 lib/markdown/engines/rdiscount.rb
+lib/markdown/engines/redcarpet.rb
 lib/markdown/engines/rpeg_markdown.rb
 lib/markdown/gen.rb
 lib/markdown/wrapper.rb

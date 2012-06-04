@@ -3,10 +3,10 @@ module Markdown
   class Wrapper
 
     def initialize( lib, mn, content, options={} )
-      @lib     = lib      
-      @mn      = mn
-      @content = content
-      @options = options
+      @lib      = lib      
+      @mn       = mn
+      @content  = content
+      @options  = options
     end
         
     def to_html
@@ -15,7 +15,7 @@ module Markdown
 
       puts "  Converting Markdown-text (#{@content.length} bytes) to HTML using library '#{@lib}' calling '#{@mn}'..."
 
-      send( @mn, @content )  # call 1st configured markdown engine e.g. kramdown_to_html( content )
+      send( @mn, @content, @options )  # call 1st configured markdown engine e.g. kramdown_to_html( content )
     end    
 
     include Engine
@@ -54,9 +54,13 @@ module Markdown
       @@config = Config.new
     end
 
-    lib = @@config.markdown_lib
-    mn  = @@config.markdown_to_html_method # lets you use differnt options/converters for a single markdown lib   
-    Wrapper.new( lib, mn, content, options )
+    lib      = @@config.markdown_lib
+    mn       = @@config.markdown_to_html_method # lets you use differnt options/converters for a single markdown lib   
+    defaults = @@config.markdown_lib_defaults  ## todo/fix: use mn / converter from defaults hash?? mn no longer needed??    
+
+    props = Props.new( options, 'USER', Props.new( defaults, 'SYSTEM' ))    
+    
+    Wrapper.new( lib, mn, content, props )
   end
 
 end # module Markdown

@@ -1,7 +1,7 @@
 module Markdown
   module Engine
 
-    def kramdown_to_html( content )
+    def kramdown_to_html( content, options={} )
       Kramdown::Document.new( content ).to_html
     end      
 

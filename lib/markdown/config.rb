@@ -30,8 +30,11 @@ DEFAULTS = { 'libs' => [
                 '.mdown',
                 '.markdn',
                 '.txt',
-                '.text' ]  # todo: check - add .wiki??? ext
-           }
+                '.text' ],  # todo: check - add .wiki??? ext
+             'redcarpet' => {
+                 'extensions' => []   # todo/fix:  merge nested hash??
+              },
+            }
 
   
     def initialize
@@ -110,6 +113,10 @@ DEFAULTS = { 'libs' => [
 
     def markdown_lib
       @libs.first
+    end
+    
+    def markdown_lib_defaults
+      opts = @props.fetch( @libs.first, {} )
     end
     
     def markdown_to_html_method

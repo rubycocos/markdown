@@ -1,7 +1,7 @@
 module Markdown
   module Engine
 
-    def rpeg_markdown_to_html( content )
+    def rpeg_markdown_to_html( content, options={} )
       PEGMarkdown.new( content ).to_html
     end
 
