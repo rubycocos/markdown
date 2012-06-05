@@ -1,0 +1,232 @@
+Headers
+-------
+
+# Heading 1
+
+## Heading 2
+
+### Heading 3
+
+#### Heading 4
+
+##### Heading 5
+
+###### Heading 6
+
+Heading 1
+=========
+
+Heading 2
+---------
+
+
+
+
+Paragraphs
+----------
+
+
+The first paragraph.
+
+Another paragraph.
+
+This is a paragraph  
+which contains a hard line break.
+
+
+
+
+Blockquotes
+-----------
+
+
+> A sample blockquote.
+>
+> >Nested blockquotes are
+> >also possible.
+>
+> ## Headers work too
+> This is the outer quote again.
+
+
+
+Code Blocks
+-----------
+
+This is a sample code block.
+
+    # The Greeter class
+    class Greeter
+      def initialize(name)
+        @name = name.capitalize
+      end
+    
+      def salute
+        puts "Hello #{@name}!"
+      end
+    end
+ 
+    # Create a new object
+    g = Greeter.new("world")
+    
+    # Output "Hello World!"
+    g.salute
+
+
+This is a sample fenced code block.
+
+~~~
+# The Greeter class
+class Greeter
+  def initialize(name)
+    @name = name.capitalize
+  end
+ 
+  def salute
+    puts "Hello #{@name}!"
+  end
+end
+ 
+# Create a new object
+g = Greeter.new("world")
+ 
+# Output "Hello World!"
+g.salute
+~~~
+
+This is a sample fenced code block.
+
+```
+# The Greeter class
+class Greeter
+  def initialize(name)
+    @name = name.capitalize
+  end
+ 
+  def salute
+    puts "Hello #{@name}!"
+  end
+end
+ 
+# Create a new object
+g = Greeter.new("world")
+ 
+# Output "Hello World!"
+g.salute
+```
+
+
+
+Horizontal Rules
+----------------
+
+* * *
+
+---
+
+  _  _  _  _
+
+---------------
+
+
+
+Lists
+-----
+
+1. This is a list item
+2. And another item
+2. And the third one
+   with additional text
+
+
+1.  This is a list item
+
+    > with a blockquote
+
+    # And a header
+
+2.  Followed by another item
+
+
+
+Nested lists:
+
+1. Item one
+   1. sub item one
+   2. sub item two
+   3. sub item three
+2. Item two
+
+
+
+Tables
+------
+
+| A simple | table |
+| with multiple | lines|
+
+
+| Header1 | Header2 | Header3 |
+|:--------|:-------:|--------:|
+| cell1   | cell2   | cell3   |
+| cell4   | cell5   | cell6   |
+|----
+| cell1   | cell2   | cell3   |
+| cell4   | cell5   | cell6   |
+
+
+HTML Elements
+-------------
+
+<div>
+This is wrapped in a para.
+</div>
+
+<p>
+This can contain only *span* level elements.
+</p>
+
+
+
+Emphasis
+--------
+
+This is *emphasized*,
+_this_ too!
+
+
+This is **strong**,
+__this__ too!
+
+
+This w**ork**s as expected!
+
+
+
+Inline Code
+-----------
+
+Use `Markdown.new(text).to_html`
+to convert the `text` in markdown
+syntax to HTML.
+
+
+Footnotes
+---------
+
+This is a text with a footnote[^1].
+
+[^1]: And here is the definition.
+
+
+This is a text with another footnote[^2].
+
+[^2]: And here is the definition.
+
+
+This is a text with a footnote[^3].
+
+[^3]:
+    And here is the definition.
+
+    > With a quote!

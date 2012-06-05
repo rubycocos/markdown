@@ -10,3 +10,13 @@ site/_site/
 
 # ignore generated test html pages
 *.html
+sandbox/*.html
+
+
+# ignore output folders
+
+o/
+kramdown/
+k/
+redcarpet/
+r/
