@@ -2,6 +2,8 @@ module Markdown
   module Engine
    
     def pandoc_ruby_to_html( content, options={} )
+      puts "  Converting Markdown-text (#{@content.length} bytes) to HTML using library pandoc_ruby..."
+
       content = PandocRuby.new( content, :from => :markdown, :to => :html ).convert
     end
   

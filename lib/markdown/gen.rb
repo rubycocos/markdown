@@ -204,9 +204,9 @@ markdown - Lets you convert plain text documents (#{Markdown.extnames.join(', ')
 
 Examples:
   markdown                   # Process all documents in working folder (that is, .)
-  markdown ruby_tut          # Process document or folder using Markdown
-  markdown ruby_tut.text     # Process document using Markdown
-  markdown -o site ruby_tut  # Output documents to site folder
+  markdown quickref          # Process document or folder using Markdown
+  markdown quickref.text     # Process document using Markdown
+  markdown -o site quickref  # Output documents to site folder
 
 Further information:
   http://geraldb.github.com/markdown

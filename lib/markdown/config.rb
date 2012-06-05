@@ -32,7 +32,11 @@ DEFAULTS = { 'libs' => [
                 '.txt',
                 '.text' ],  # todo: check - add .wiki??? ext
              'redcarpet' => {
-                 'extensions' => []   # todo/fix:  merge nested hash??
+                 'extensions' => [
+                    'no_intra_emphasis',
+                    'fenced_code_blocks',
+                    'tables',
+                    'strikethrough' ]   # todo/fix:  merge nested hash??
               },
             }
 
@@ -42,9 +46,8 @@ DEFAULTS = { 'libs' => [
 
       # check for user settings (markdown.yml) in home folder 
 
-      ## todo/fix: use join path???
       ## todo: use .markdown.yml?? or differnt name ??
-      props_home_file = "#{Env.home}/markdown.yml"      
+      props_home_file = File.join( Env.home, 'markdown.yml' )      
       if File.exists?( props_home_file )
         puts "Loading settings from '#{props_home_file}'..."
         @props = @props_home = Props.load_file( props_home_file, @props )
@@ -52,14 +55,13 @@ DEFAULTS = { 'libs' => [
       
       # check for user settings (markdown.yml) in working folder 
     
-      props_work_file = "./markdown.yml"
+      props_work_file = File.join( '.', 'markdown.yml' )
       if File.exists?( props_work_file )
         puts "Loading settings from '#{props_work_file}'..."
         @props = @props_work = Props.load_file( props_work_file, @props )
       end
 
       @libs   = []
-      @mn     = nil   # markdown converter method name (mn) e.g. kramdown_to_html
       
       require_markdown_libs()
     end
@@ -108,7 +110,7 @@ DEFAULTS = { 'libs' => [
         end
       end
 
-      puts "  Found #{@libs.length} Markdown libraries: #{@libs.join(', ')}"
+      puts "  Found #{@libs.length} Markdown #{(@libs.length == 1) ? 'library' : 'libraries'}: #{@libs.join(', ')}"
     end
 
     def markdown_lib

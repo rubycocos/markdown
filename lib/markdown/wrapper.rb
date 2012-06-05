@@ -12,9 +12,6 @@ module Markdown
     def to_html
       # call markdown filter; turn markdown lib name into method_name (mn)
       # eg. rpeg-markdown =>  rpeg_markdown_to_html
-
-      puts "  Converting Markdown-text (#{@content.length} bytes) to HTML using library '#{@lib}' calling '#{@mn}'..."
-
       send( @mn, @content, @options )  # call 1st configured markdown engine e.g. kramdown_to_html( content )
     end    
 

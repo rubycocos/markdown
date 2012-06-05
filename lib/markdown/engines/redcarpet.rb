@@ -13,8 +13,9 @@ module Markdown
       extensions_ary.each do |e|
         extensions_hash[ e.to_sym ] = true
       end
-      
-      puts "using extensions: [#{extensions_ary.join(', ')}]"      
+
+      puts "  Converting Markdown-text (#{@content.length} bytes) to HTML using library redcarpet (#{Redcarpet::VERSION}) w/ HTML render"      
+      puts "  using extensions: [#{extensions_ary.join(', ')}]"      
       
       redcarpet = Redcarpet::Markdown.new( Redcarpet::Render::HTML, extensions_hash )
       redcarpet.render( content )      

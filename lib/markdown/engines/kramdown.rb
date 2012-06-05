@@ -12,8 +12,17 @@ module Markdown
       h[ :toc_levels ]    = options.fetch( 'toc_levels',nil )    if options.fetch( 'toc_levels',    nil )
       h[ :smart_quotes ]  = options.fetch( 'smart_quotes',nil )  if options.fetch( 'smart_quotes',  nil )
 
-      puts "using options:"
-      pp h
+      puts "  Converting Markdown-text (#{@content.length} bytes) to HTML using library kramdown (#{Kramdown::VERSION})"
+      puts "  using options:"
+      pp h    # todo: use inspect? or to_json?
+      
+      ## allow fenced blocks a la github flavored markup
+      # -- thanks zenweb for inspiration:
+      #  https://github.com/seattlerb/zenweb/blob/master/lib/zenweb/plugins/markdown.rb
+      
+      content = content.
+        gsub(/^``` *(\w+)/) { "{:lang=\"#$1\"}\n~~~" }.
+        gsub(/^```/, '~~~')
       
       Kramdown::Document.new( content, h ).to_html
     end
