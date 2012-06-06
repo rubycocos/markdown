@@ -20,3 +20,7 @@ kramdown/
 k/
 redcarpet/
 r/
+
+# ignore local markdown.yml (used for testing only)
+
+markdown.yml

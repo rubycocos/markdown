@@ -75,12 +75,12 @@ module Markdown
 EOS
       
       out = File.new( File.join( outpath, outname ), "w+" )
-      out << banner
+####      out << banner
       out << content
       out.flush
       out.close
 
-      ## pop/restore working folder/dir      
+      ## pop/restore working folder/dir
       unless newcwd == oldcwd
         logger.debug "oldcwd=>#{oldcwd}<, newcwd=>#{newcwd}<"
         Dir.chdir( oldcwd )
