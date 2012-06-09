@@ -36,9 +36,9 @@ DEFAULTS = { 'libs' => [
                     'no_intra_emphasis',
                     'fenced_code_blocks',
                     'tables',
-                    'strikethrough' ]   # todo/fix:  merge nested hash??
-              },
-            }
+                    'strikethrough' ] },   # todo/fix:  merge nested hash??
+             'filters' => [] # optional (preprocessing) text filters: e.g. comments-percent-style, skip-end-directive, etc. (see textutils gem)
+           }
 
   
     def initialize
@@ -68,6 +68,10 @@ DEFAULTS = { 'libs' => [
 
     def markdown_extnames
       @props.fetch( 'extnames', nil )
+    end
+    
+    def markdown_filters
+      @props.fetch( 'filters', nil )
     end
 
     def known_markdown_libs

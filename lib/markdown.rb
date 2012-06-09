@@ -15,7 +15,7 @@ require 'fileutils'
 
 # rubygems
 
-require 'props'   # manage properties/settings/env  
+require 'props'   # manage properties/settings/env
 
 class Env
   def self.markdown_lib
@@ -23,6 +23,8 @@ class Env
   end    
 end # class Env
 
+
+require 'textutils'  # text filters and helpers
 
 # our own code
 
@@ -40,7 +42,7 @@ require 'markdown/gen'
 
 module Markdown
 
-  VERSION = '0.2.0'
+  VERSION = '0.3.0'
 
   # version string for generator meta tag (includes ruby version)
   def self.banner

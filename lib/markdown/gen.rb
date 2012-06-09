@@ -16,6 +16,8 @@ module Markdown
 
   class Gen
 
+    include TextUtils::Filter   # include filters such as comments_percent_style, etc. (see textutils gem)
+
     attr_reader :logger
     attr_reader :opts
     
@@ -62,7 +64,15 @@ module Markdown
       puts "*** #{inname} (#{dirname}) => #{outname} (#{(opts.output_path == '.') ? dirname : opts.output_path})..."
       
       content = File.read( inname )
-      content = Markdown.new( content ).to_html  # convert light-weight markup to hypertext
+      
+      # step 1) run (optional) preprocessing text filters
+      Markdown.filters.each do |filter|
+        mn = filter.tr( '-', '_' ).to_sym  # construct method name (mn)
+        content = send( mn, content )   # call filter e.g.  include_helper_hack( content )  
+      end
+
+      # step 2) convert light-weight markup to hypertext
+      content = Markdown.new( content ).to_html
 
 
 ## todo: add Markdown.lib_options inspect/dump to banner
@@ -195,10 +205,12 @@ EOS
            logger.level = Logger::DEBUG
         end
  
+
+## todo: add markdown.lib options (e.g. extensions,etc)
  
         usage =<<EOS
 
-markdown - Lets you convert plain text documents (#{Markdown.extnames.join(', ')}) to hypertext (.html) with your Markdown engine of choice (#{Markdown.lib}).
+markdown - Lets you convert plain text documents (#{Markdown.extnames.join(', ')}) to hypertext (.html) with your Markdown engine of choice (#{Markdown.lib}) and preprocessing text filters (#{Markdown.filters.join(', ')}).
 
 #{cmd.help}
 

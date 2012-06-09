@@ -41,6 +41,14 @@ module Markdown
     @@config.markdown_extnames
   end
   
+  def self.filters
+    if @@config.nil?
+      @@config = Config.new
+    end
+    @@config.markdown_filters
+  end
+  
+  
   def self.new( content, options={} )
 
     ## todo: allow options to pass in
@@ -55,7 +63,7 @@ module Markdown
     mn       = @@config.markdown_to_html_method # lets you use differnt options/converters for a single markdown lib   
     defaults = @@config.markdown_lib_defaults  ## todo/fix: use mn / converter from defaults hash?? mn no longer needed??    
 
-    props = Props.new( options, 'USER', Props.new( defaults, 'SYSTEM' ))    
+    props = Props.new( options, 'USER', Props.new( defaults, 'SYSTEM' ))
     
     Wrapper.new( lib, mn, content, props )
   end

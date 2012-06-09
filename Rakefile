@@ -15,6 +15,7 @@ Hoe.spec 'markdown' do
   
   self.extra_deps = [
     ['props','>= 0.1.0'],
+    ['textutils','>=0.1.0'],
     ['kramdown','>= 0.13.6']
   ]
   
