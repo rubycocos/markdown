@@ -2,22 +2,27 @@
 
 * [geraldb.github.com/markdown](http://geraldb.github.com/markdown)
 
-## Description
-
 The Markdown Engine Wrapper (`markdown`) Ruby gem lets you use
-your markdown library of choice. Preconfigured markdown libraries include 
-`kramdown`, `redcarpet`, `bluecloth`, `maruku`, `rpeg-markdown`, `rdiscount`, `pandoc-ruby`.
+your markdown library of choice. Preconfigured markdown libraries include
 
-## Usage - Ruby Code 
+| `kramdown`      | |
+| `redcarpet`     | |
+| `bluecloth`     | |
+| `maruku`        | |
+| `rpeg-markdown` | |
+| `rdiscount`     | |
+| `pandoc-ruby`   | |
+
+## Usage - Ruby Code
 
     require 'markdown'
     
     Markdown.new( 'Hello World' ).to_html
 
 
-## Usage - Commandline
+## Usage - Command Line
 
-The `markdown` gem includes a little commandline tool. Try `markdown -h` for details:
+The `markdown` gem includes a little command line tool. Try `markdown -h` for details:
 
 ```
 markdown - Lets you convert plain text documents to hypertext with your Markdown engine of choice
@@ -35,33 +40,25 @@ Examples:
   markdown -o site quickref  # Output documents to site folder
 ```
 
-
-## Install
-
-Just install the gem:
-
-    $ gem install markdown
-
-
 ## Configuration - Markdown Engine Loading Order
 
 The default (fallback) Markdown library is `kramdown`. To use your markdown engine of choice
 configure the wrapper. The wrapper
 uses the following lookup order to find the markdown engine:
 
-### 1) `MARKDOWN_LIB` environment variable
+### 1) `MARKDOWN_LIB` Environment Variable
 
 Example:
 
     set MARKDOWN_LIB=kramdown
 
-### 2) `lib` property (in `./markdown.yml` or `~/markdown.yml`)
+### 2) `lib` Property (in `./markdown.yml` or `~/markdown.yml`)
 
 Example:
 
     lib: kramdown
 
-### 3) `libs` property (in `./markdown.yml` or `~/markdown.yml`)
+### 3) `libs` Property (in `./markdown.yml` or `~/markdown.yml`)
 
 Example:
 
@@ -91,9 +88,9 @@ You can also pass along options to your Markdown library. Example:
         - strikethrough
 
 
-## Filters (Commandline Only)
+## Filters (Command Line Only)
 
-For the commandline tool only you can configure preprocessing filters to
+For the command line tool only you can configure preprocessing filters to
 allow comments, Ruby helpers, and much more. Example:
 
     ## Let's use percent style comments
@@ -147,6 +144,12 @@ Example:
     pandoc-ruby:
       converter: pandoc-ruby-to-s5
 
+
+## Install
+
+Just install the gem:
+
+    $ gem install markdown
 
 
 ## Real World Usage
