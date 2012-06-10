@@ -18,6 +18,8 @@ your markdown library of choice. Preconfigured markdown libraries include
     require 'markdown'
     
     Markdown.new( 'Hello World' ).to_html
+    
+    # => "<p>Hello World</p>\n"
 
 
 ## Usage - Command Line
@@ -88,7 +90,7 @@ You can also pass along options to your Markdown library. Example:
         - strikethrough
 
 
-## Filters (Command Line Only)
+## Configuration -Filters (Command Line Only)
 
 For the command line tool only you can configure preprocessing filters to
 allow comments, Ruby helpers, and much more. Example:
@@ -132,7 +134,7 @@ will skip everything until the end of the document.
 For more about filters see the [`textutils`](http://geraldb.github.com/textutils) gem.
 
 
-## Converters
+## Configuration - Converters
 
 The Markdown wrapper lets you configure different converter methods
 for each markdown engine. By default
@@ -161,8 +163,8 @@ and author slides in plain text using a wiki-style markup language that's easy-t
 
 ## Alternatives
 
-[`multi_markdown`](https://github.com/postmodern/multi_markdown) gem by Hal Brodigan
-
+* [`multi_markdown`](https://github.com/postmodern/multi_markdown) gem by Hal Brodigan (aka postmodern)
+* [`markdown_meta`](https://github.com/headius/markdown_meta) gem by Charles Oliver Nutter (aka headius)
 
 ## Questions? Comments?
 
