@@ -37,23 +37,24 @@ DEFAULTS = { 'libs' => [
                     'fenced_code_blocks',
                     'tables',
                     'strikethrough' ] },   # todo/fix:  merge nested hash??
-             'filters' => [] # optional (preprocessing) text filters: e.g. comments-percent-style, skip-end-directive, etc. (see textutils gem)
+             'filters' => [
+                'comments-percent-style' ] # optional (preprocessing) text filters: e.g. comments-percent-style, skip-end-directive, etc. (see textutils gem)
            }
 
   
     def initialize
       @props = @props_default = Props.new( DEFAULTS, 'DEFAULTS' )
 
-      # check for user settings (markdown.yml) in home folder 
+      # check for user settings (markdown.yml) in home folder
 
       ## todo: use .markdown.yml?? or differnt name ??
-      props_home_file = File.join( Env.home, 'markdown.yml' )      
+      props_home_file = File.join( Env.home, 'markdown.yml' )
       if File.exists?( props_home_file )
         puts "Loading settings from '#{props_home_file}'..."
         @props = @props_home = Props.load_file( props_home_file, @props )
       end
       
-      # check for user settings (markdown.yml) in working folder 
+      # check for user settings (markdown.yml) in working folder
     
       props_work_file = File.join( '.', 'markdown.yml' )
       if File.exists?( props_work_file )
@@ -78,7 +79,7 @@ DEFAULTS = { 'libs' => [
       # returns an array of known markdown engines e.g.
       # [ 'pandoc-ruby', 'rdiscount', 'rpeg-markdown', 'maruku', 'bluecloth', 'kramdown' ]
     
-      ## todo: allow single lib para instead of libs    
+      ## todo: allow single lib para instead of libs
       ##  todo: allow ENV setting markdown_[select]_lib=xxxx
     
       ## todo/fix: use lookup with config parent cascade
@@ -89,13 +90,13 @@ DEFAULTS = { 'libs' => [
       ## 2)  lib property (single markdown engine)
       ## 3)  libs property (first-come first-serve markdown engine list)
 
-      user_lib = Env.markdown_lib || @props.fetch( 'lib', nil )      
+      user_lib = Env.markdown_lib || @props.fetch( 'lib', nil )
 
-      if user_lib.nil?         
+      if user_lib.nil?
         user_libs = @props.fetch( 'libs', nil )
       else
         [ user_lib ]  # return as array (wrap single lib entry)  
-      end      
+      end
     end
 
       
@@ -109,7 +110,7 @@ DEFAULTS = { 'libs' => [
           require lib
           @libs << lib
         rescue LoadError => ex
-          ## todo: use logger.debug  instead of puts        
+          ## todo: use logger.debug  instead of puts
           puts "Markdown library #{lib} not found. Use gem install #{lib} to install."
         end
       end
@@ -122,15 +123,15 @@ DEFAULTS = { 'libs' => [
     end
     
     def markdown_lib_defaults
+      ## todo: return props ? that acts like a hash?? (lets us support section lookup without deep merge???)
       opts = @props.fetch( @libs.first, {} )
     end
     
     def markdown_to_html_method
       lib  = @libs.first
-      opts = @props.fetch( lib, {} )
-      method = opts.fetch( 'converter', "#{lib.downcase}_to_html" )  # default to <lib>_to_html if converter prop not found    
+      method = @props.fetch_from_section( lib, 'converter', "#{lib.downcase}_to_html" )  # default to <lib>_to_html if converter prop not found    
       method.tr('-','_').to_sym
-    end      
+    end
 
   end # class Config
 end # module Markdown

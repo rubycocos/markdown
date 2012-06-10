@@ -14,9 +14,9 @@ Hoe.spec 'markdown' do
   self.email   = 'webslideshow@googlegroups.com'
   
   self.extra_deps = [
-    ['props','>= 0.1.0'],
-    ['textutils','>=0.1.0'],
-    ['kramdown','>= 0.13.6']
+    ['props','>= 0.2.0'],
+    ['textutils','>=0.2.0'],
+    ['kramdown','>= 0.13.7']
   ]
   
   # switch extension to .markdown for gihub formatting

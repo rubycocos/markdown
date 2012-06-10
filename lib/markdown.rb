@@ -42,7 +42,7 @@ require 'markdown/gen'
 
 module Markdown
 
-  VERSION = '0.3.0'
+  VERSION = '0.4.0'
 
   # version string for generator meta tag (includes ruby version)
   def self.banner
