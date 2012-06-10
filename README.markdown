@@ -5,13 +5,13 @@
 The Markdown Engine Wrapper (`markdown`) Ruby gem lets you use
 your markdown library of choice. Preconfigured markdown libraries include
 
-| `kramdown`      | |
-| `redcarpet`     | |
-| `bluecloth`     | |
-| `maruku`        | |
-| `rpeg-markdown` | |
-| `rdiscount`     | |
-| `pandoc-ruby`   | |
+* `kramdown`
+* `redcarpet`
+* `bluecloth`
+* `maruku`
+* `rpeg-markdown`
+* `rdiscount`
+* `pandoc-ruby`
 
 ## Usage - Ruby Code
 
@@ -68,7 +68,7 @@ Example:
 
 
 Markdown libraries in the list get loaded on a first-come first-serve principle,
-that is, the first library `require`d successfully will get used.
+that is, the first library `require`'d successfully will get used.
 
 
 
