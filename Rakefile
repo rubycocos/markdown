@@ -1,5 +1,5 @@
 require 'hoe'
-require './lib/markdown.rb'
+require './lib/markdown/version.rb'
 
 Hoe.spec 'markdown' do
   

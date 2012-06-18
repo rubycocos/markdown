@@ -4,6 +4,9 @@ README.markdown
 Rakefile
 bin/markdown
 lib/markdown.rb
+lib/markdown/cli/gen.rb
+lib/markdown/cli/opts.rb
+lib/markdown/cli/runner.rb
 lib/markdown/config.rb
 lib/markdown/engines/bluecloth.rb
 lib/markdown/engines/kramdown.rb
@@ -12,6 +15,6 @@ lib/markdown/engines/pandoc_ruby.rb
 lib/markdown/engines/rdiscount.rb
 lib/markdown/engines/redcarpet.rb
 lib/markdown/engines/rpeg_markdown.rb
-lib/markdown/gen.rb
+lib/markdown/version.rb
 lib/markdown/wrapper.rb
 test/test_kramdown.rb

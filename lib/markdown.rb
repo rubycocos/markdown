@@ -28,6 +28,7 @@ require 'textutils'  # text filters and helpers
 
 # our own code
 
+require 'markdown/version'
 require 'markdown/config'
 require 'markdown/engines/bluecloth'
 require 'markdown/engines/kramdown'
@@ -37,16 +38,17 @@ require 'markdown/engines/rdiscount'
 require 'markdown/engines/redcarpet'
 require 'markdown/engines/rpeg_markdown'
 require 'markdown/wrapper'
-require 'markdown/gen'
+
+require 'markdown/cli/gen'
+require 'markdown/cli/opts'
+require 'markdown/cli/runner'
 
 
 module Markdown
 
-  VERSION = '0.4.0'
-
   # version string for generator meta tag (includes ruby version)
   def self.banner
-    "Markdown #{VERSION} on Ruby #{RUBY_VERSION} (#{RUBY_RELEASE_DATE}) [#{RUBY_PLATFORM}]"
+    "markdown #{VERSION} on Ruby #{RUBY_VERSION} (#{RUBY_RELEASE_DATE}) [#{RUBY_PLATFORM}]"
   end
 
   def self.main
@@ -59,7 +61,7 @@ module Markdown
     args += markdownopt.split if markdownopt
     args += ARGV.dup
     
-    Gen.new.run(args)
+    Runner.new.run(args)
   end
 
 end  # module Markdown
