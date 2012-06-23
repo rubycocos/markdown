@@ -67,6 +67,17 @@ DEFAULTS = { 'libs' => [
       require_markdown_libs()
     end
 
+    def dump  # for debugging dump all settings
+      puts "Markdown settings:"
+      @props_default.dump   if @props_default
+      @props_home.dump      if @props_home
+      @props_work.dump      if @props_work
+      
+      puts
+      puts "Markdown libs:"
+      puts "  #{@libs.length} Markdown #{(@libs.length == 1) ? 'library' : 'libraries'} found: #{@libs.join(', ')}"
+    end
+
     def markdown_extnames
       @props.fetch( 'extnames', nil )
     end
@@ -114,8 +125,6 @@ DEFAULTS = { 'libs' => [
           puts "Markdown library #{lib} not found. Use gem install #{lib} to install."
         end
       end
-
-      puts "  Found #{@libs.length} Markdown #{(@libs.length == 1) ? 'library' : 'libraries'}: #{@libs.join(', ')}"
     end
 
     def markdown_lib

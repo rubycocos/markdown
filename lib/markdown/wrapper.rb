@@ -48,6 +48,13 @@ module Markdown
     @@config.markdown_filters
   end
   
+  def self.dump   # dump settings for debug/verbose flag
+    if @@config.nil?
+      @@config = Config.new
+    end
+    @@config.dump
+  end
+  
   
   def self.new( content, options={} )
 

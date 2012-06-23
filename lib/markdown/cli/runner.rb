@@ -116,10 +116,22 @@ class Runner
           puts Markdown.banner
           exit
         end
+        
+        cmd.on( '--about', "(Debug) Show more version info" ) do
+          puts
+          puts Markdown.banner
+          puts
 
-        cmd.on( "--verbose", "Show debug trace" )  do
-           logger.datetime_format = "%H:%H:%S"
-           logger.level = Logger::DEBUG
+          # dump settings
+          Markdown.dump
+          puts
+          
+          exit
+        end
+
+        cmd.on( "--verbose", "(Debug) Show debug trace" )  do
+          logger.datetime_format = "%H:%H:%S"
+          logger.level = Logger::DEBUG
         end
  
 ## todo: add markdown.lib options (e.g. extensions,etc)
@@ -151,6 +163,9 @@ EOS
       
       # force loading of config
       Markdown.lib
+      
+      Markdown.dump   if logger.level == Logger::DEBUG   # dump settings if verbose/debug flag on
+
       
       logger.debug "args.length: #{args.length}"
       logger.debug "args: >#{args.join(',')}<"
