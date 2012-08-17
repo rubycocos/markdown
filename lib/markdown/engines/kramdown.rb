@@ -11,6 +11,7 @@ module Markdown
       h[ :entity_output ] = options.fetch( 'entity_output',nil ) if options.fetch( 'entity_output', nil )
       h[ :toc_levels ]    = options.fetch( 'toc_levels',nil )    if options.fetch( 'toc_levels',    nil )
       h[ :smart_quotes ]  = options.fetch( 'smart_quotes',nil )  if options.fetch( 'smart_quotes',  nil )
+      h[ :banner ] = options.fetch( 'banner', true)              if options.fetch( 'banner', nil)
 
       puts "  Converting Markdown-text (#{@content.length} bytes) to HTML using library kramdown (#{Kramdown::VERSION})"
       puts "  using options:"
@@ -43,7 +44,7 @@ EOS
 <!-- === end markdown block ===================================================== -->
 EOS
 
-      content = banner_begin + content + banner_end
+      content = banner_begin + content + banner_end if h[ :banner ]
       
     end
 
