@@ -44,7 +44,11 @@ EOS
 <!-- === end markdown block ===================================================== -->
 EOS
 
-      content = banner_begin + content + banner_end if h[ :banner ]
+      if h[ :banner ]
+        content = banner_begin + content + banner_end
+      end
+
+      content
       
     end
 
