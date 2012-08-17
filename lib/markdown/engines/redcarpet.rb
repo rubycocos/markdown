@@ -8,6 +8,7 @@ module Markdown
       # see https://github.com/tanoku/redcarpet
       
       extensions_ary = options.fetch( 'extensions', [] )
+      should_show_banner = options.fetch( 'banner', true )
       
       extensions_hash = {}
       extensions_ary.each do |e|
@@ -33,12 +34,15 @@ module Markdown
   -->
 EOS
 
-       banner_end =<<EOS
+      banner_end =<<EOS
 <!-- === end markdown block ===================================================== -->
 EOS
 
-      content = banner_begin + content + banner_end
-      
+      if should_show_banner
+        content = banner_begin + content + banner_end
+      end
+
+      content
       
     end
 
