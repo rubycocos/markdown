@@ -12,7 +12,8 @@ require 'pp'
 
 # our own code
 
-require 'lib/markdown'
+# require 'lib/markdown'
+require 'c:\source\other\markdown\lib\markdown.rb'
 
 
 class TestKramdown < Test::Unit::TestCase
