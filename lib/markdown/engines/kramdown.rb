@@ -11,7 +11,8 @@ module Markdown
       h[ :entity_output ] = options.fetch( 'entity_output',nil ) if options.fetch( 'entity_output', nil )
       h[ :toc_levels ]    = options.fetch( 'toc_levels',nil )    if options.fetch( 'toc_levels',    nil )
       h[ :smart_quotes ]  = options.fetch( 'smart_quotes',nil )  if options.fetch( 'smart_quotes',  nil )
-      h[ :banner ] =        options.fetch( 'banner', true)       if options.fetch( 'banner', nil)
+      
+      show_banner =  options.fetch( 'banner', true)
 
       puts "  Converting Markdown-text (#{content.length} bytes) to HTML using library kramdown (#{Kramdown::VERSION})"
       puts "  using options: #{h.to_json}"
@@ -26,9 +27,11 @@ module Markdown
       
       content = Kramdown::Document.new( content, h ).to_html
       
-      # todo: check content size and newlines
-      #  check banner option?
-      #  only add banner if some newlines and size > treshold?
+      if show_banner
+
+       # todo: check content size and newlines
+       #  check banner option?
+       #  only add banner if some newlines and size > treshold?
       
       banner_begin =<<EOS
 <!-- === begin markdown block =====================================================
@@ -42,13 +45,11 @@ EOS
        banner_end =<<EOS
 <!-- === end markdown block ===================================================== -->
 EOS
-
-      if h[ :banner ]
         content = banner_begin + content + banner_end
-      end
+      end # if show_banner
 
       content
-      
+
     end
 
   end # module Engine

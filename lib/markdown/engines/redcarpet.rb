@@ -8,8 +8,8 @@ module Markdown
       # see https://github.com/tanoku/redcarpet
       
       extensions_ary = options.fetch( 'extensions', [] )
-      should_show_banner = options.fetch( 'banner', true )
-      
+      show_banner = options.fetch( 'banner', true )
+
       extensions_hash = {}
       extensions_ary.each do |e|
         extensions_hash[ e.to_sym ] = true
@@ -21,9 +21,10 @@ module Markdown
       redcarpet = Redcarpet::Markdown.new( Redcarpet::Render::HTML, extensions_hash )
       content = redcarpet.render( content )
 
-      # todo: check content size and newlines
-      #  check banner option?
-      #  only add banner if some newlines and size > treshold?
+      if show_banner
+        # todo: check content size and newlines
+        #  check banner option?
+        #  only add banner if some newlines and size > treshold?
       
       banner_begin =<<EOS
 <!-- === begin markdown block =====================================================
@@ -38,9 +39,8 @@ EOS
 <!-- === end markdown block ===================================================== -->
 EOS
 
-      if should_show_banner
         content = banner_begin + content + banner_end
-      end
+      end # if show_banner
 
       content
       

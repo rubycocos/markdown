@@ -3,20 +3,20 @@ module Markdown
   class Wrapper
 
     def initialize( lib, mn, content, options={} )
-      @lib      = lib      
+      @lib      = lib
       @mn       = mn
       @content  = content
       @options  = options
     end
-        
+
     def to_html
       # call markdown filter; turn markdown lib name into method_name (mn)
       # eg. rpeg-markdown =>  rpeg_markdown_to_html
       send( @mn, @content, @options )  # call 1st configured markdown engine e.g. kramdown_to_html( content )
-    end    
+    end
 
     include Engine
-    
+
   end # class Wrapper
 
 
