@@ -1,6 +1,10 @@
 # Markdown Engine Wrapper - Use Your Markdown Library of Choice in Ruby
 
-* [geraldb.github.com/markdown](http://geraldb.github.com/markdown)
+* home  :: [github.com/geraldb/markdown](https://github.com/geraldb/markdown)
+* bugs  :: [github.com/geraldb/markdown/issues](https://github.com/geraldb/markdown/issues)
+* gem   :: [rubygems.org/gems/markdown](https://rubygems.org/gems/markdown)
+* rdoc  :: [rubydoc.info/gems/markdown](http://rubydoc.info/gems/markdown)
+
 
 The Markdown Engine Wrapper (`markdown`) Ruby gem lets you use
 your markdown library of choice. Preconfigured markdown libraries include
@@ -156,7 +160,7 @@ Just install the gem:
 
 ## Real World Usage
 
-The [`slideshow`](http://slideshow.rubyforge.org) (also known as Slide Show (S9)) gem
+The [`slideshow`](http://slideshow-s9.github.io) (also known as Slide Show (S9)) gem
 that lets you create slide shows
 and author slides in plain text using a wiki-style markup language that's easy-to-write and easy-to-read.
 
