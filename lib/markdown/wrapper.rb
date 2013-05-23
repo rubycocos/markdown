@@ -22,11 +22,14 @@ module Markdown
 
 
   @@config = nil
-  
-  def self.lib=( value )
-      ## todo: lets you select your library    
+
+  def self.lib=( lib )
+    if @@config.nil?
+      @@config = Config.new
+    end
+    @@config.markdown_lib = lib
   end
-  
+
   def self.lib
     if @@config.nil?
       @@config = Config.new
@@ -54,9 +57,19 @@ module Markdown
     end
     @@config.dump
   end
-  
-  
+
+
   def self.new( content, options={} )
+
+    ## options
+    ## make sure keys are strings, that is, allow symbols for easy use
+    ##  but internally only use string (yaml gets use strings)
+
+    ## fix: use stringify_keys! from activesupport (include dependency ?? why? why not??)
+    options.keys.each do |key|
+      options[ key.to_s ] = options.delete(key)
+    end
+
 
     ## todo: allow options to pass in
     ##   lets you change markdown engine/converter for every call

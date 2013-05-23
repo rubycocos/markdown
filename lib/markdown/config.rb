@@ -110,9 +110,7 @@ DEFAULTS = { 'libs' => [
       end
     end
 
-      
     def require_markdown_libs
-
       # check for available markdown libs/gems
       # try to require each lib and remove any not installed
 
@@ -125,6 +123,25 @@ DEFAULTS = { 'libs' => [
           puts "Markdown library #{lib} not found. Use gem install #{lib} to install."
         end
       end
+    end
+
+    def markdown_lib=( lib )
+      
+      # fix/todo: check if @libs.first == lib  => do nothing; return
+      
+      # check if value exists in libs array
+      # if yes put it into first position
+      # otherwise issue warning/error - better throw exception; engine not found
+      
+      # try to delete 
+      obj = @libs.delete( lib )
+      if obj.nil?  # nothing deleted; no obj found
+        # try to require; will raise load error exception if not found; know what your're doing! no fallback; sorry; better fail fast
+        require lib
+      end
+ 
+      # add it back; make it first entry
+      @libs.unshift( lib )
     end
 
     def markdown_lib

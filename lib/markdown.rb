@@ -7,6 +7,7 @@
 # core and stlibs
 
 require 'yaml'
+require 'json'
 require 'pp'
 require 'logger'
 require 'optparse'
