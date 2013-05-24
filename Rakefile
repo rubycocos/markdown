@@ -15,12 +15,20 @@ Hoe.spec 'markdown' do
   
   self.extra_deps = [
     ['props','>= 1.0.0'],
-    ['textutils','>=0.2.0'],
-    ['kramdown','>= 0.13.7']
+    ['textutils','>=0.6.4'],
+    ['kramdown','>= 1.0.2']
+    
+    ## todo: add sinatra ?? - keep it optional for now
   ]
   
   # switch extension to .markdown for gihub formatting
   self.readme_file  = 'README.markdown'
   self.history_file = 'History.markdown'
-  
+
+  self.licenses = ['Public Domain']
+
+  self.spec_extras = {
+   :required_ruby_version => '>= 1.9.2'
+  }
+
 end
