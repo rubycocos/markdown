@@ -149,9 +149,13 @@ Examples:
   markdown quickref.text     # Process document using Markdown
   markdown -o site quickref  # Output documents to site folder
 
+Note:
+  markdown server            # Starts builtin markdown server (alias for server include serve, service, s)
+
+
 Further information:
-  http://geraldb.github.com/markdown
-  
+  https://github.com/geraldb/markdown
+
 EOS
            exit
         end
@@ -169,18 +173,27 @@ EOS
       
       logger.debug "args.length: #{args.length}"
       logger.debug "args: >#{args.join(',')}<"
-      
-      # if no file args given; default to working folder (that is, .)
-      args = ['.'] if args.length == 0
 
-      args.each do |arg|
-        files = find_files( arg )
-        files.each do |file|
-          Gen.new( logger, opts ).create_doc( file )
+      if args.length == 1 && ['server', 'serve', 'service', 's' ].include?( args[0] )
+         # start service/server
+         # NB: server (HTTP service) not included in standard default require
+        require 'markdown/server'
+
+        Markdown::Server.run!
+      else
+
+        # if no file args given; default to working folder (that is, .)
+        args = ['.'] if args.length == 0
+
+        args.each do |arg|
+          files = find_files( arg )
+          files.each do |file|
+            Gen.new( logger, opts ).create_doc( file )
+          end
         end
       end
-      
-      puts "Done."
+
+      puts 'Done. Bye.'
       
     end   # method run 
 

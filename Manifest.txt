@@ -15,6 +15,15 @@ lib/markdown/engines/pandoc_ruby.rb
 lib/markdown/engines/rdiscount.rb
 lib/markdown/engines/redcarpet.rb
 lib/markdown/engines/rpeg_markdown.rb
+lib/markdown/server.rb
+lib/markdown/server/public/style.css
+lib/markdown/server/views/_debug.erb
+lib/markdown/server/views/_version.erb
+lib/markdown/server/views/debug.erb
+lib/markdown/server/views/index.erb
+lib/markdown/server/views/layout.erb
 lib/markdown/version.rb
 lib/markdown/wrapper.rb
+test/helper.rb
 test/test_kramdown.rb
+test/test_redcarpet.rb

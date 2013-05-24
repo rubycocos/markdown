@@ -52,6 +52,10 @@ module Markdown
     "markdown #{VERSION} on Ruby #{RUBY_VERSION} (#{RUBY_RELEASE_DATE}) [#{RUBY_PLATFORM}]"
   end
 
+  def self.root
+    "#{File.expand_path( File.dirname(File.dirname(__FILE__)) )}"
+  end
+
   def self.main
     
     # allow env variable to set RUBYOPT-style default command line options
