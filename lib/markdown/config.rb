@@ -50,7 +50,7 @@ DEFAULTS = { 'libs' => [
       ## todo: use .markdown.yml?? or differnt name ??
       props_home_file = File.join( Env.home, 'markdown.yml' )
       if File.exists?( props_home_file )
-        puts "Loading settings from '#{props_home_file}'..."
+        puts "Loading home settings from '#{props_home_file}'..."
         @props = @props_home = Props.load_file( props_home_file, @props )
       end
       
@@ -58,7 +58,7 @@ DEFAULTS = { 'libs' => [
     
       props_work_file = File.join( '.', 'markdown.yml' )
       if File.exists?( props_work_file )
-        puts "Loading settings from '#{props_work_file}'..."
+        puts "Loading work settings from '#{props_work_file}'..."
         @props = @props_work = Props.load_file( props_work_file, @props )
       end
 
@@ -148,13 +148,24 @@ DEFAULTS = { 'libs' => [
       @libs.first
     end
     
-    def markdown_lib_defaults
-      ## todo: return props ? that acts like a hash?? (lets us support section lookup without deep merge???)
-      opts = @props.fetch( @libs.first, {} )
+    def markdown_libs
+      @libs  # NB: return all libs - should we return a clone?
     end
     
-    def markdown_to_html_method
-      lib  = @libs.first
+    def markdown_lib_defaults( lib=nil )
+      lib = @libs.first   if lib.nil?
+      ## todo: return props ? that acts like a hash?? (lets us support section lookup without deep merge???)
+      opts = @props.fetch( lib, {} )
+    end
+
+    def markdown_version_method( lib=nil )
+      lib  = @libs.first   if lib.nil?
+      method = "#{lib.downcase}_version"  # default to <lib>_to_html if converter prop not found    
+      method.tr('-','_').to_sym
+    end
+
+    def markdown_to_html_method( lib=nil )
+      lib  = @libs.first   if lib.nil?
       method = @props.fetch_from_section( lib, 'converter', "#{lib.downcase}_to_html" )  # default to <lib>_to_html if converter prop not found    
       method.tr('-','_').to_sym
     end

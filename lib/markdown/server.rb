@@ -51,7 +51,49 @@ class Server < Sinatra::Base
   # Controllers / Routing / Request Handlers
 
   get '/' do
+    
+    @welcome_markdown =<<EOS
+# Header 1
+
+## Header 2
+
+### Header 3
+    
+Welcome to [Markdown](#{request.url}). We hope you **really** enjoy using this.
+
+Just type some [markdown](http://daringfireball.net/projects/markdown) on the left and see it on the right. *Simple as that.*
+
+> Quote goes here.
+
+A list:
+
+- One
+- Two
+- Three
+
+Some inline code `to_html` and a preformatted block (code block):
+
+```
+Markdown.new( 'Hello Markdown!' ).to_html
+```
+
+EOS
+
+    @welcome_html = Markdown.new( @welcome_markdown ).to_html
+
     erb :index
+  end
+
+
+  get '/update' do
+    pp params
+    text = params[:notepad][:text]
+    lib  = params[:notepad][:lib]   # optional
+    pp text
+    pp lib
+    
+    Markdown.lib = lib   if lib.nil? == false && lib.empty? == false   # fix: use activesupport present?
+    Markdown.new( text ).to_html
   end
 
   ## todo: use 3rd party services from markdown.yml (lets you configure)
@@ -65,9 +107,7 @@ class Server < Sinatra::Base
       Markdown.lib = params[:lib]
     end
 
-    md = Markdown.new( params[:text] )
-    html = md.to_html
-    html
+    Markdown.new( params[:text] ).to_html
   end
 
   ## return html wrapped in json (follows babelfish2 dingus service api)
@@ -78,8 +118,7 @@ class Server < Sinatra::Base
       Markdown.lib = params[:lib]
     end
     
-    md = Markdown.new( params[:text] )
-    html = md.to_html
+    html = Markdown.new( params[:text] ).to_html
     
     ### todo: add/fill up version
     ## ass helper  <lib>_version to engine
@@ -124,3 +163,5 @@ end #  module Markdown
 
 # say hello
 puts Markdown::Server.banner
+puts "  default markdown engine: #{Markdown.lib}" # force loading of settings/config
+puts "  markdown engines: #{Markdown.libs.inspect}"

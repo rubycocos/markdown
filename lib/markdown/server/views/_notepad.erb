@@ -1,0 +1,93 @@
+
+<script>
+
+ var show_html = false;
+
+ function toggle_output() {
+    var $toggle_output = $( '#toggle-output' );
+    var $output        = $( '#output' );
+    var $output_source = $( '#output-source' );
+    
+    show_html = !show_html;
+    
+    if( show_html ) {
+      $toggle_output.html( 'Hide HTML' );
+      $output.hide();
+      $output_source.show();
+    }
+    else {
+      $toggle_output.html( 'Show HTML' );
+      $output.show();
+      $output_source.hide();
+    }
+ }
+
+ function process_markdown() {
+    var params = $( '#notepad, #notepad-lib' ).serialize();
+    
+    // window.alert( params );
+    
+    $.get( '/update', params, function( html ){
+       
+       var $output        = $( '#output' );
+       var $output_source = $( '#output-source' );
+       // window.alert( html );
+       $output.html( html );
+       $output_source.html( html );
+    });
+ }
+ 
+</script>
+
+
+<table width='100%'>
+ <colgroup>
+   <col width='50%'>
+   <col width='50%'>
+ </colgroup>
+ <tr>
+   <td>
+     <!-- first column -->
+
+<div id='input'>
+    <textarea id='notepad' name='notepad[text]' style='width: 100%; min-height: 500px;'><%= @welcome_markdown %></textarea>
+</div>
+
+   </td>
+   <td style='vertical-align: top;'>
+     <!-- second column -->
+
+<div id='output' class='markdown' style='width:100%; padding-left: 10px;'>
+   <%= @welcome_html %>
+</div>
+
+ <textarea id='output-source' style='display: none; width: 100%; min-height: 500px;'><%= @welcome_html %></textarea>
+
+  <div id='loading' style='display: none;'></div>
+     
+   </td>
+ </tr>
+ <tr>
+  <td>
+    <!-- first column -->
+    <span>
+      Use
+       <select id='notepad-lib' name='notepad[lib]'>
+         <% Markdown.libs.each_with_index do |lib,i| %>
+           <option value='<%= lib %>'
+               <% if i == 0 %>
+                  selected='selected'
+               <% end %> >
+             <%= lib %></option>
+          <% end %>
+       </select>
+    </span>
+
+    <a href='#' onclick='process_markdown();'>Update</a>
+
+  </td>
+  <td><!-- second column -->
+    <a id='toggle-output' href='#' onclick='toggle_output();'>Show HTML</a>
+  </td>
+ </tr>
+</table>
