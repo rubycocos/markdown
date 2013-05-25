@@ -41,13 +41,13 @@ DEFAULTS = { 'libs'      => [ 'kramdown' ],    # note: make kramdown default eng
 #
 # pandoc-ruby  - how to include - gemfile cannot install binary ??
 # rpeg-markdown  - build failure - still active, anyway?
+# rdiscount - # compilation error on heroku; sorry excluded for now
 
 DEFAULTS_SERVICE = { 'libs' => [
                 'kramdown',   # note: make kramdown default engine
                 'maruku',
                 'bluecloth',
-                'redcarpet',
-                'rdiscount'
+                'redcarpet'
                 ],
              'extnames'  => DEFAULT_EXTNAMES,
              'redcarpet' => DEFAULT_REDCARPET

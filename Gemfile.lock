@@ -10,7 +10,6 @@ GEM
     rack (1.5.2)
     rack-protection (1.5.0)
       rack
-    rdiscount (2.0.7.3)
     redcarpet (2.3.0)
     sinatra (1.4.2)
       rack (~> 1.5, >= 1.5.2)
@@ -29,7 +28,6 @@ DEPENDENCIES
   kramdown
   maruku
   props
-  rdiscount
   redcarpet
   sinatra
   textutils

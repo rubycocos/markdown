@@ -7,11 +7,12 @@ gem 'sinatra', :require => 'sinatra/base'
 
 gem 'kramdown'
 gem 'redcarpet'
-gem 'rdiscount'
 gem 'maruku'
 gem 'bluecloth'
 
-# gem 'rpeg-markdown'  # comilation error w/ bundler - exclude for now; still active, anyway?
+# gem 'rdiscount'  # compilation error on heroku; sorry excluded for now
+
+# gem 'rpeg-markdown'  # compilation error w/ bundler - exclude for now; still active, anyway?
 
 
 ###################
