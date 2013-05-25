@@ -38,7 +38,7 @@ class TestKramdown < MiniTest::Unit::TestCase
     assert( html1 =~ /^<!-- === begin markdown block ===/ )
     assert( html1.include?( "<p>Hello World!</p>\n" ))
     assert( html2.include?( "<p>Hello World!</p>\n" ))
-    assert( html1 =~ /============ -->$/ )
+    assert( html1 =~ /=== -->$/ )
   end
 
 end # class TestKramdown

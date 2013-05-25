@@ -9,40 +9,51 @@ module Markdown
 # also note for now the first present markdown library gets used
 #  the search order is first come, first serve, that is: rdiscount, rpeg-markdown, maruku, bluecloth, kramdown (fallback, always present)
 
-#  DEFAULTS = {
-#    'libs' => [ 'pandoc-ruby',
-#                'rdiscount',
-#                'rpeg-markdown',
-#                'maruku',
-#                'bluecloth',
-#                'kramdown' ] }
 
-# note: make kramdown default engine
+DEFAULT_EXTNAMES = [
+  '.markdown',
+  '.m',
+  '.mark',
+  '.mkdn',
+  '.md',
+  '.mdown',
+  '.markdn',
+  '.txt',
+  '.text' ]    # todo: check - add .wiki??? ext
 
-DEFAULTS = { 'libs' => [
-                'kramdown' ],
-             'extnames' => [
-                '.markdown',
-                '.m',
-                '.mark',
-                '.mkdn',
-                '.md',
-                '.mdown',
-                '.markdn',
-                '.txt',
-                '.text' ],  # todo: check - add .wiki??? ext
-             'redcarpet' => {
-                 'extensions' => [
-                    'no_intra_emphasis',
-                    'fenced_code_blocks',
-                    'tables',
-                    'strikethrough' ] },   # todo/fix:  merge nested hash??
-             'filters' => [
-                'comments-percent-style' ] # optional (preprocessing) text filters: e.g. comments-percent-style, skip-end-directive, etc. (see textutils gem)
+DEFAULT_REDCARPET = {
+  'extensions' => [
+    'no_intra_emphasis',
+    'fenced_code_blocks',
+    'tables',
+    'strikethrough' ] }
+
+DEFAULT_FILTERS = [
+  'comments-percent-style' ] # optional (preprocessing) text filters: e.g. comments-percent-style, skip-end-directive, etc. (see textutils gem)
+
+
+DEFAULTS = { 'libs'      => [ 'kramdown' ],    # note: make kramdown default engine
+             'extnames'  => DEFAULT_EXTNAMES,
+             'redcarpet' => DEFAULT_REDCARPET,   # todo/fix:  merge nested hash??
+             'filters' =>  DEFAULT_FILTERS
            }
 
-  
-    def initialize
+#
+# pandoc-ruby  - how to include - gemfile cannot install binary ??
+# rpeg-markdown  - build failure - still active, anyway?
+
+DEFAULTS_SERVICE = { 'libs' => [
+                'kramdown',   # note: make kramdown default engine
+                'maruku',
+                'bluecloth',
+                'redcarpet',
+                'rdiscount'
+                ],
+             'extnames'  => DEFAULT_EXTNAMES,
+             'redcarpet' => DEFAULT_REDCARPET
+           }
+
+    def load_props
       @props = @props_default = Props.new( DEFAULTS, 'DEFAULTS' )
 
       # check for user settings (markdown.yml) in home folder
@@ -61,7 +72,22 @@ DEFAULTS = { 'libs' => [
         puts "Loading work settings from '#{props_work_file}'..."
         @props = @props_work = Props.load_file( props_work_file, @props )
       end
+    end
 
+    def load_props_service
+      puts "Loading service settings..."
+      @props = @props_default = Props.new( DEFAULTS_SERVICE, 'DEFAULTS' )
+    end
+
+    def initialize
+
+      # for an example see ./boot.rb
+      if $MARKDOWN_USE_SERVICE_CONFIG == true
+        load_props_service
+      else
+        load_props
+      end
+      
       @libs   = []
       
       require_markdown_libs()

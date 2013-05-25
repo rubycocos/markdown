@@ -50,9 +50,9 @@ class Server < Sinatra::Base
   ##############################################
   # Controllers / Routing / Request Handlers
 
-  get '/' do
-    
-    @welcome_markdown =<<EOS
+
+  def welcome_markdown
+<<EOS
 # Header 1
 
 ## Header 2
@@ -71,62 +71,90 @@ A list:
 - Two
 - Three
 
-Some inline code `to_html` and a preformatted block (code block):
+Some inline code `to_html` and a preformatted code block:
 
 ```
 Markdown.new( 'Hello Markdown!' ).to_html
 ```
-
 EOS
+  end
 
+
+  get %r{/(service|services|srv|s)} do
+    erb :service
+  end
+
+  get %r{/(notepad|note|notes|n)} do
+    @welcome_markdown = welcome_markdown
+    @welcome_html = Markdown.new( @welcome_markdown ).to_html
+
+    erb :notepad
+  end
+
+  get '/' do
+    @welcome_markdown = welcome_markdown
     @welcome_html = Markdown.new( @welcome_markdown ).to_html
 
     erb :index
   end
 
 
-  get '/update' do
-    pp params
-    text = params[:notepad][:text]
-    lib  = params[:notepad][:lib]   # optional
-    pp text
-    pp lib
-    
-    Markdown.lib = lib   if lib.nil? == false && lib.empty? == false   # fix: use activesupport present?
-    Markdown.new( text ).to_html
-  end
-
   ## todo: use 3rd party services from markdown.yml (lets you configure)
   #   e.g. http://johnmacfarlane.net/cgi-bin/pandoc-dingus?text=hi
 
-  ## return html
-  get '/html' do
+
+  def markdownify( params, opts={} )
+    pp params
+    text = params[:text]
+    lib  = params[:lib]   # optional
+    pp text
+    pp lib
 
     # fix: use activesupport -> .present?
-    if params[:lib].nil? == false && params[:lib].empty? == false
-      Markdown.lib = params[:lib]
+    if lib.nil? == false && lib.empty? == false
+      Markdown.lib = lib
     end
 
-    Markdown.new( params[:text] ).to_html
+    Markdown.new( text, opts ).to_html
   end
 
-  ## return html wrapped in json (follows babelfish2 dingus service api)
-  get '/dingus' do
 
-    # fix: use activesupport -> .present?
-    if params[:lib].nil? == false && params[:lib].empty? == false
-      Markdown.lib = params[:lib]
-    end
-    
-    html = Markdown.new( params[:text] ).to_html
-    
-    ### todo: add/fill up version
-    ## ass helper  <lib>_version to engine
-    # {"name":"Pandoc","html":"<p>hi</p>","version":"1.9.4.2"}
+  # return hypertext (html)
+  get '/markdown' do
+    content_type 'text/html'
+    markdownify( params )
+  end
+
+
+  # return babelmark2/dingus-style json
+  get '/markdown/dingus' do
+    html = markdownify( params )
+
+    ## todo: use converter for markdownify
+    lib = Markdown.lib
+    conv = Markdown.create_converter( lib )
+            
     data = {
-      name: Markdown.lib,
+      name: lib,
       html: html,
-      version: 'x.x.x'  # to be done
+      version: conv.version
+    }
+    
+    json_or_jsonp( data.to_json )
+  end
+
+  # return html wrapped in json (follows babelfish2 dingus service api)
+  get '/dingus' do
+    html = markdownify( params, banner: false )
+
+    ## todo: use converter for markdownify
+    lib = Markdown.lib
+    conv = Markdown.create_converter( lib )
+            
+    data = {
+      name: lib,
+      html: html,
+      version: conv.version
     }
     
     json_or_jsonp( data.to_json )

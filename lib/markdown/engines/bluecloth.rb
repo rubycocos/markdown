@@ -1,6 +1,10 @@
 module Markdown
   module Engine
 
+    def bluecloth_version
+      BlueCloth::VERSION
+    end
+
     def bluecloth_to_html( content, options={} )
       puts "  Converting Markdown-text (#{content.length} bytes) to HTML using library bluecloth..."
 

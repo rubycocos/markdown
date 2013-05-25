@@ -1,0 +1,27 @@
+
+<h3>Markdown Libs / Live Examples</h3>
+
+<table class='api'>
+<%  Markdown.libs.each do |lib|
+      conv = Markdown.create_converter( lib )
+  %>
+<tr>
+  <td><%= lib %></td>
+  <td> / <%= conv.version %></td>
+  <td> - 
+ <code>GET
+     <a href='view-source:<%= url("/markdown?lib=#{lib}&text=Hello+World!") %>'>
+        /markdown?<span class='params'>lib=<em><%= lib %></em></span>&text=<em>Hello+World!</em>
+     </a>
+ </code>
+  </td>
+  <td>
+ <code>&bull; GET
+     <a href='<%= url("/dingus?lib=#{lib}&text=Hello+World!") %>'>
+        /dingus?<span class='params'>lib=<em><%= lib %></em></span>&text=<em>Hello+World!</em>
+     </a>
+ </code>
+  </td>
+</tr>
+<% end %>
+</table>

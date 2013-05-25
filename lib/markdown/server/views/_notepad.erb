@@ -11,12 +11,12 @@
     show_html = !show_html;
     
     if( show_html ) {
-      $toggle_output.html( 'Hide HTML' );
+      $toggle_output.html( '[ Hide HTML ]' );
       $output.hide();
       $output_source.show();
     }
     else {
-      $toggle_output.html( 'Show HTML' );
+      $toggle_output.html( '[ Show HTML ]' );
       $output.show();
       $output_source.hide();
     }
@@ -27,13 +27,16 @@
     
     // window.alert( params );
     
-    $.get( '/update', params, function( html ){
+    $.get( '/markdown', params, function( data ){
        
        var $output        = $( '#output' );
        var $output_source = $( '#output-source' );
        // window.alert( html );
-       $output.html( html );
-       $output_source.html( html );
+       
+       // todo: check if data.html present? or content type js/json
+       //  allow dingus-style { 'html': 'dddddd' }
+       $output.html( data );
+       $output_source.html( data );
     });
  }
  
@@ -50,7 +53,7 @@
      <!-- first column -->
 
 <div id='input'>
-    <textarea id='notepad' name='notepad[text]' style='width: 100%; min-height: 500px;'><%= @welcome_markdown %></textarea>
+    <textarea id='notepad' name='text' style='width: 100%; min-height: 500px;'><%= @welcome_markdown %></textarea>
 </div>
 
    </td>
@@ -64,7 +67,7 @@
  <textarea id='output-source' style='display: none; width: 100%; min-height: 500px;'><%= @welcome_html %></textarea>
 
   <div id='loading' style='display: none;'></div>
-     
+ 
    </td>
  </tr>
  <tr>
@@ -72,7 +75,7 @@
     <!-- first column -->
     <span>
       Use
-       <select id='notepad-lib' name='notepad[lib]'>
+       <select id='notepad-lib' name='lib'>
          <% Markdown.libs.each_with_index do |lib,i| %>
            <option value='<%= lib %>'
                <% if i == 0 %>
@@ -83,11 +86,11 @@
        </select>
     </span>
 
-    <a href='#' onclick='process_markdown();'>Update</a>
+    <a href='#' onclick='process_markdown();'>[ Update ]</a>
 
   </td>
   <td><!-- second column -->
-    <a id='toggle-output' href='#' onclick='toggle_output();'>Show HTML</a>
+    <a id='toggle-output' href='#' onclick='toggle_output();'>[ Show HTML ]</a>
   </td>
  </tr>
 </table>

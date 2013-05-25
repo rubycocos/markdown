@@ -31,7 +31,7 @@ class TestRedcarpet < MiniTest::Unit::TestCase
     html = Markdown.new( 'Hello World!', banner: true ).to_html
     assert( html =~ /^<!-- === begin markdown block ===/ )
     assert( html.include?( "<p>Hello World!</p>\n" ))
-    assert( html =~ /============ -->$/ )
+    assert( html =~ /=== -->$/ )
   end
 
 

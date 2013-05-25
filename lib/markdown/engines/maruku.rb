@@ -1,6 +1,10 @@
 module Markdown
   module Engine
-   
+
+    def maruku_version
+      Maruku::VERSION
+    end
+
     def maruku_to_html( content, options={} )
       puts "  Converting Markdown-text (#{content.length} bytes) to HTML using library maruku..."
             
