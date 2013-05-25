@@ -17,6 +17,7 @@ your markdown library of choice. Preconfigured markdown libraries include
 * `rdiscount`
 * `pandoc-ruby`
 
+
 ## Usage - Ruby Code
 
     require 'markdown'
@@ -26,25 +27,44 @@ your markdown library of choice. Preconfigured markdown libraries include
     # => "<p>Hello World</p>\n"
 
 
+## Usage - Web Service / HTTP (JSON) API - `GET /markdown`
+
+Try the `markdown` HTTP (JSON) API running
+on Heroku [`hypertext.herokuapp.com`](http://hypertext.herokuapp.com).
+
+Example:
+
+    GET /markdown?text=Hello+World!
+    
+    <p>Hello World!</p>
+
+
+To start your own server/service use `markdown serve`. See command line below.
+
+
 ## Usage - Command Line
 
 The `markdown` gem includes a little command line tool. Try `markdown -h` for details:
 
-```
-markdown - Lets you convert plain text documents to hypertext with your Markdown engine of choice
-  and preprocessing text filters.
 
-Usage: markdown [options] files_or_dirs
-    -o, --output PATH                Output Path
-    -v, --verbose                    Show debug trace
+    markdown - Lets you convert plain text documents to hypertext with your Markdown engine of choice
+      and preprocessing text filters.
+    
+    Usage: markdown [options] files_or_dirs
+        -o, --output PATH                Output Path
+        -v, --verbose                    Show debug trace
+    
+    
+    Examples:
+      markdown                   # Process all documents in working folder (that is, .)
+      markdown quickref          # Process document or folder using Markdown
+      markdown quickref.text     # Process document using Markdown
+      markdown -o site quickref  # Output documents to site folder
+    
+    Note:
+      markdown server            # Starts builtin markdown server
+                                 #   (aliases for server include serve, service, s)
 
-
-Examples:
-  markdown                   # Process all documents in working folder (that is, .)
-  markdown quickref          # Process document or folder using Markdown
-  markdown quickref.text     # Process document using Markdown
-  markdown -o site quickref  # Output documents to site folder
-```
 
 ## Configuration - Markdown Engine Loading Order
 

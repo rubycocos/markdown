@@ -150,7 +150,8 @@ Examples:
   markdown -o site quickref  # Output documents to site folder
 
 Note:
-  markdown server            # Starts builtin markdown server (alias for server include serve, service, s)
+  markdown server            # Starts builtin markdown server
+                             #  (aliases for server include serve, service, s)
 
 
 Further information:
