@@ -50,11 +50,16 @@ class Server < Sinatra::Base
   end
 
 
+  get '/notepad/notepad.html' do
+    puts "[debug] call get '/notepad/notepad.html'"
+    send_file "#{Markdown.root}/lib/markdown/server/public/notepad/notepad.html"
+  end
+
   get %r{/(service|services|srv|s)$} do
     erb :service
   end
 
-  get %r{/(test|t)$} do
+  get %r{/(test|t|notepad)$} do
     # for testing/debugging use copied sources 1:1 from markdown-notepad repo
     redirect '/notepad/notepad.html'
   end
