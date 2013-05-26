@@ -50,16 +50,16 @@ class Server < Sinatra::Base
   end
 
 
-  get %r{/(service|services|srv|s)} do
+  get %r{/(service|services|srv|s)$} do
     erb :service
   end
 
-  get %r{/(test|t)} do
+  get %r{/(test|t)$} do
     # for testing/debugging use copied sources 1:1 from markdown-notepad repo
     redirect '/notepad/notepad.html'
   end
 
-  get %r{/(note|notes|n)} do
+  get %r{/(note|notes|n)$} do
     # NB: do NOT include notepad in route/path (we want notepad/* to function as static resource)!
     @welcome_markdown = welcome_markdown
     @welcome_html = Markdown.new( @welcome_markdown ).to_html
@@ -95,13 +95,6 @@ class Server < Sinatra::Base
   end
 
 
-  # return hypertext (html)
-  get '/markdown' do
-    content_type 'text/html'
-    markdownify( params )
-  end
-
-
   # return babelmark2/dingus-style json
   get '/markdown/dingus' do
     html = markdownify( params )
@@ -117,6 +110,12 @@ class Server < Sinatra::Base
     }
     
     json_or_jsonp( data.to_json )
+  end
+
+  # return hypertext (html)
+  get '/markdown' do
+    content_type 'text/html'
+    markdownify( params )
   end
 
   # return html wrapped in json (follows babelfish2 dingus service api)
