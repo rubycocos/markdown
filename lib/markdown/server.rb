@@ -59,7 +59,8 @@ class Server < Sinatra::Base
     redirect '/notepad/notepad.html'
   end
 
-  get %r{/(notepad|note|notes|n)} do
+  get %r{/(note|notes|n)} do
+    # NB: do NOT include notepad in route/path (we want notepad/* to function as static resource)!
     @welcome_markdown = welcome_markdown
     @welcome_html = Markdown.new( @welcome_markdown ).to_html
 
