@@ -38,50 +38,25 @@ class Server < Sinatra::Base
   set :static, true   # set up static file routing
 
 
-  ##################
-  # Helpers
-  
-    helpers do
-      def path_prefix
-        request.env['SCRIPT_NAME']
-      end
-    end 
-
   ##############################################
   # Controllers / Routing / Request Handlers
 
 
   def welcome_markdown
-<<EOS
-# Header 1
-
-## Header 2
-
-### Header 3
-    
-Welcome to [Markdown](#{request.url}). We hope you **really** enjoy using this.
-
-Just type some [markdown](http://daringfireball.net/projects/markdown) on the left and see it on the right. *Simple as that.*
-
-> Quote goes here.
-
-A list:
-
-- One
-- Two
-- Three
-
-Some inline code `to_html` and a preformatted code block:
-
-```
-Markdown.new( 'Hello Markdown!' ).to_html
-```
-EOS
+    ## todo: rotate welcome / use random number for index
+    # place markdown docs in server/docs
+     text = File.read( "#{Markdown.root}/lib/markdown/server/docs/welcome.md" )
+     text
   end
 
 
   get %r{/(service|services|srv|s)} do
     erb :service
+  end
+
+  get %r{/(test|t)} do
+    # for testing/debugging use copied sources 1:1 from markdown-notepad repo
+    redirect '/notepad/notepad.html'
   end
 
   get %r{/(notepad|note|notes|n)} do

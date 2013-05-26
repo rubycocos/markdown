@@ -1,0 +1,51 @@
+
+  .markdown a,
+  .markdown a:visited {
+    color: #2e80d3;
+    text-decoration: underline;
+  }
+
+  .markdown em {
+    background-color: #fffeca;
+    padding: 0 0.08em;
+  }
+  
+  .markdown abbr {
+    border-bottom: 1px dashed;
+    cursor: help;
+  }
+    
+  .markdown blockquote {
+    border-left: 5px solid #ddd;
+    color: #555;
+    margin: 0 0 1em;
+    padding-left: 0.6em;
+  }
+  
+  .markdown pre {
+    background-color: #f8f8ff;
+    border: 1px solid #dedede;
+    color: #444;
+    font-family: "Bitstream Vera Sans Mono", Courier, monospace;
+    font-size: 0.8em;
+    line-height: 1.5em;
+    margin: 0 0 2em;
+    overflow: auto;
+    padding: 0.5em;
+  }
+
+   .markdown pre code {
+      background-color: #f8f8ff;
+      border: medium none;
+      font-size: 1em;
+      padding: 0;
+  }
+  
+  .markdown code {
+    background-color: #f8f8ff;
+    border: 1px solid #dedede;
+    color: #444;
+    padding: 0 0.2em;
+    font-family: "Bitstream Vera Sans Mono", Courier, monospace;
+    font-size: 0.8em;
+  }
