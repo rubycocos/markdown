@@ -178,6 +178,12 @@ Just install the gem:
     $ gem install markdown
 
 
+## Dependencies / Building Blocks
+
+[Markdown Notepad](https://github.com/geraldb/markdown-notepad) - Another simple single-page, server-less Markdown editor
+in JavaScript & Hypertext.
+
+
 ## Real World Usage
 
 The [`slideshow`](http://slideshow-s9.github.io) (also known as Slide Show (S9)) gem
