@@ -49,29 +49,12 @@ class Server < Sinatra::Base
      text
   end
 
-  def notepad_html
-    fn = "#{Markdown.root}/lib/markdown/server/public/notepad/notepad.html"
-    text = File.read( fn )
-    text
-  end
-
-  get '/notepad/notepad.html' do
-    puts "[debug] call get '/notepad/notepad.html'"
-    content_type 'text/html'
-    notepad_html
-  end
-
-  get '/notepad/index.html' do
-    puts "[debug] call get '/notepad/index.html'"
-    content_type 'text/html'
-    notepad_html
-  end
 
   get %r{/(service|services|srv|s)$} do
     erb :service
   end
 
-  get %r{/(test|t)$} do
+  get %r{/(test|t|notepad)$} do
     # for testing/debugging use copied sources 1:1 from markdown-notepad repo
     redirect '/notepad/notepad.html'
   end

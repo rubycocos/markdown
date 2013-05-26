@@ -9,7 +9,7 @@ doc/
 site/_site/
 
 # ignore generated test html pages
-*.html
+./*.html
 sandbox/*.html
 
 
