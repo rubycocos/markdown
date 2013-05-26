@@ -54,7 +54,7 @@ class Server < Sinatra::Base
     erb :service
   end
 
-  get %r{/(test|t|note|notes|n)$} do
+  get %r{/(note|notes|n)$} do
     # for testing/debugging use copied sources 1:1 from markdown-notepad repo
     redirect '/note.html'
   end
