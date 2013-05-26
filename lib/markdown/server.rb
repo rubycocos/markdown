@@ -54,17 +54,17 @@ class Server < Sinatra::Base
     erb :service
   end
 
-  get %r{/(test|t|notepad)$} do
+  get %r{/(test|t|note|notes|n)$} do
     # for testing/debugging use copied sources 1:1 from markdown-notepad repo
-    redirect '/notepad/notepad.html'
+    redirect '/note.html'
   end
 
-  get %r{/(note|notes|n)$} do
-    # NB: do NOT include notepad in route/path (we want notepad/* to function as static resource)!
+  get %r{/(editor|edit|ed|e)$} do
+    # NB: use editor for "ruby-enhanced" parts of note
     @welcome_markdown = welcome_markdown
     @welcome_html = Markdown.new( @welcome_markdown ).to_html
 
-    erb :notepad
+    erb :editor
   end
 
   get '/' do

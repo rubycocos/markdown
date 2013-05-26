@@ -4,8 +4,8 @@
       
       /* NB: we need to use to_json (to escape newlines in string if present etc.)
       */
-      
-      var notepad = markdown_notepad_new( {
+ 
+       markdown_note_new( {
          welcome: {
            markdown: <%= @welcome_markdown.to_json %>,
            html:     <%= @welcome_html.to_json %>

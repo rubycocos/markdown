@@ -17,7 +17,7 @@ a#input-toggle, a#input-toggle:visited, a#input-toggle:hover {
 
 
 
-#input #notepad {
+#input #note {
    width: 100%; min-height: 600px;
 
     -moz-box-sizing: border-box;
@@ -65,6 +65,6 @@ a#input-toggle, a#input-toggle:visited, a#input-toggle:hover {
   display: none;
   width: 21px;
   height: 5px;
-  background: url('i/dots-white.gif') no-repeat;
+  background: url('../../i/dots-white.gif') no-repeat;
   /* -webkit-transition: all 0.1s linear; */
 }

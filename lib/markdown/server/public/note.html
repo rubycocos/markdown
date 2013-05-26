@@ -2,24 +2,22 @@
 <html>
 <head>
   <meta charset='UTF-8'>
-  <title>markdown notepad</title>
+  <title>Markdown Note</title>
 
-  <link href='notepad.css' rel='stylesheet'>
-  <link href='markdown.css' rel='stylesheet'>
-   
-  <script src='lib/jquery-2.0.1.min.js'></script>
-  <script src='lib/showdown.min.js'></script>
-  <script src='lib/pagedown.js'></script>
+  <link href='css/markdown/note.css' rel='stylesheet'>
+  <link href='css/markdown/themes/basic.css' rel='stylesheet'>
 
-  <script src='markdown.api.js'></script>
-  <script src='markdown.lib.js'></script>
-  
-  <script src='notepad.js'></script>
+  <script src='js/lib3rd/jquery-2.0.1.min.js'></script>
+  <script src='js/lib3rd/showdown.min.js'></script>
+  <script src='js/lib3rd/pagedown.js'></script>
+
+  <script src='js/markdown.api.js'></script>
+  <script src='js/markdown.lib.js'></script>
+
+  <script src='js/markdown.note.js'></script>
   <script>
     $(document).ready( function () {
-      
-      var notepad = markdown_notepad_new();
-
+       markdown_note_new();
     });
   </script>
 </head>
@@ -36,7 +34,7 @@
      <!-- first column -->
 
       <div id='input'>
-        <textarea id='notepad' class='black'></textarea>
+        <textarea id='note' class='black'></textarea>
       </div>
 
    </td>
@@ -53,7 +51,7 @@
     <!-- first column -->
 
     <span>
-      Use <select id='notepad-lib'></select>
+      Use <select id='note-lib'></select>
     </span>
 
     <a id='output-update' href='#'>[ Update ]</a>
