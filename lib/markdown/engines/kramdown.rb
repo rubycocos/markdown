@@ -18,8 +18,8 @@ module Markdown
       
       show_banner =  options.fetch( 'banner', true)
 
-      puts "  Converting Markdown-text (#{content.length} bytes) to HTML using library kramdown (#{Kramdown::VERSION})"
-      puts "  using options: #{h.to_json}"
+      # puts "  Converting Markdown-text (#{content.length} bytes) to HTML using library kramdown (#{Kramdown::VERSION})"
+      # puts "  using options: #{h.to_json}"
 
       ## allow fenced blocks a la github flavored markup
       # -- thanks zenweb for inspiration:
