@@ -8,7 +8,7 @@
 require 'helper'
 
 
-class TestRedcarpet < MiniTest::Unit::TestCase
+class TestRedcarpet < MiniTest::Test
 
   def setup
     puts 'enter setup'

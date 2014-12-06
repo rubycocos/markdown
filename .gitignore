@@ -1,6 +1,3 @@
-# ignore komodo project files
-*.kpf
-
 # ignore generated folders 
 pkg/
 doc/

@@ -8,9 +8,8 @@
 require 'helper'
 
 
+class TestKramdown < MiniTest::Test
 
-class TestKramdown < MiniTest::Unit::TestCase
-  
   def setup
     puts 'enter setup'
     lib = Markdown.lib

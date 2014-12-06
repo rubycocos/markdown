@@ -1,8 +1,4 @@
-###
-# NB: for local testing run like:
-#
-# 1.8.x: ruby -Ilib -rrubygems lib/markdown.rb
-# 1.9.x: ruby -Ilib lib/markdown.rb
+# encoding: utf-8
 
 # core and stlibs
 
@@ -14,7 +10,7 @@ require 'optparse'
 require 'fileutils'
 
 
-# rubygems
+# gems
 
 require 'props'   # manage properties/settings/env
 
@@ -27,9 +23,10 @@ end # class Env
 
 require 'textutils'  # text filters and helpers
 
+
 # our own code
 
-require 'markdown/version'
+require 'markdown/version'      # Note: let version always go first
 require 'markdown/config'
 require 'markdown/engines/bluecloth'
 require 'markdown/engines/kramdown'
@@ -40,36 +37,7 @@ require 'markdown/engines/redcarpet'
 require 'markdown/engines/rpeg_markdown'
 require 'markdown/wrapper'
 
-require 'markdown/cli/gen'
-require 'markdown/cli/opts'
-require 'markdown/cli/runner'
 
 
-module Markdown
-
-  # version string for generator meta tag (includes ruby version)
-  def self.banner
-    "markdown #{VERSION} on Ruby #{RUBY_VERSION} (#{RUBY_RELEASE_DATE}) [#{RUBY_PLATFORM}]"
-  end
-
-  def self.root
-    "#{File.expand_path( File.dirname(File.dirname(__FILE__)) )}"
-  end
-
-  def self.main
-    
-    # allow env variable to set RUBYOPT-style default command line options
-    #   e.g. -o site 
-    markdownopt = ENV[ 'MARKDOWNOPT' ]
-    
-    args = []
-    args += markdownopt.split if markdownopt
-    args += ARGV.dup
-    
-    Runner.new.run(args)
-  end
-
-end  # module Markdown
-
-
-Markdown.main if __FILE__ == $0
+# say hello
+puts Markdown.banner  if $DEBUG || (defined?($RUBYLIBS_DEBUG) && $RUBYLIBS_DEBUG)

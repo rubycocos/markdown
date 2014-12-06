@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module Markdown
 
   ## todo: use Converter  inside Wrapper to avoid duplication
