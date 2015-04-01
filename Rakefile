@@ -19,7 +19,7 @@ Hoe.spec 'markdown' do
     ['kramdown','>= 1.5.0']
   ]
 
-  # switch extension to .markdown for gihub formatting
+  # switch extension to .markdown for github formatting
   self.readme_file  = 'README.md'
   self.history_file = 'HISTORY.md'
 
