@@ -4,6 +4,7 @@ Gems:
 
 - [markdown](markdown)  - markdown engine wrapper - use your markdown library of choice
 - [markdown-service](markdown-service)  - markdown HTTP JSON API service
+- [markdown-tools](markdown-tools)  - markdown command line tools
 
 
 <!-- break -->
