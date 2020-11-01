@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+## for testing use:
+##   $ ruby -I ./lib bin/kramup
+
+## note: use chmod a+x kramup   to add execute flag
+
+
+require 'kramdown/service'
+
+
+Kramdown::Service.run!

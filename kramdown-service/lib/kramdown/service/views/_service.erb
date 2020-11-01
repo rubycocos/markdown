@@ -1,0 +1,101 @@
+
+<h3>Kramdown Web Service / HTTP JSON(P) API</h3>
+
+<h4>Render Markdown</h4>
+
+<pre><code>GET /markdown
+</code></pre>
+
+<p>
+ Input:
+</p>
+
+<ul>
+ <li><b>text</b> - <em>Required</em> string - The markdown text to render</li>
+</ul>
+<ul>
+ <li><b>to</b> - <em>Optional</em>  string - The format to use e.g. html|latex</li>
+</ul>
+
+
+
+<p class='api'>
+ Example (HTML): 
+ <code>GET 
+     <a href='view-source:<%= url("/markdown?text=Hello+World!") %>'>
+        /markdown?<span class='params'>text=<em>Hello+World!</em></span>
+     </a>
+ </code>
+</p>
+
+<p>
+ Response:
+</p>
+
+<pre><code>Status: 200 OK
+Content-Type: text/html
+
+&lt;p&gt;Hello World!&lt;p&gt;
+</code></pre>
+
+
+
+
+<p class='api'>
+ Example (LaTeX): 
+ <code>GET 
+     <a href='view-source:<%= url("/markdown?text=Hello+World!&to=latex") %>'>
+        /markdown?<span class='params'>text=<em>Hello+World!</em></span>&amp;<span class='params'>to=latex</span>
+     </a>
+ </code>
+</p>
+
+<p>
+ Response:
+</p>
+
+<pre><code>Status: 200 OK
+Content-Type: text/latex
+
+Hello World
+</code></pre>
+
+
+
+
+<h4>Render Markdown (Babelmark2-Style)</h4>
+
+<pre><code>GET /babelmark
+</code></pre>
+
+<p>
+ Input:
+</p>
+
+<ul>
+ <li><b>text</b> - <em>Required</em> string - The markdown text to render</li>
+</ul>
+
+
+<p class='api'>Example:
+ <code>GET
+     <a href='<%= url("/babelmark?text=Hello+World!") %>'>
+        /babelmark?<span class='params'>text=<em>Hello+World!</em></span>
+     </a>
+ </code>
+</p>
+
+<p>
+ Response:
+</p>
+
+<pre><code>Status: 200 OK
+Content-Type: application/json
+
+{
+  'name': 'kramdown',
+  'html': '&lt;p&gt;Hello World!&lt;p&gt;',
+  'version': '1.10.0'
+}
+</code></pre>
+

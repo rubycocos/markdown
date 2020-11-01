@@ -4,6 +4,9 @@ Gems:
 
 - [markdown](markdown)  -  markdown engine wrapper - use your markdown library of choice
 
+<!-- break -->
+- [kramdown-service](kramdown-service)  - kramdown HTTP JSON API service (convert markdown to HTML or LaTeX)
+
 
 
 

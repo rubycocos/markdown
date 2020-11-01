@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='UTF-8'>  
+  <title>try kramdown - kramdown-service ruby gem - convert markdown to HTML or LaTeX</title>
+  <link href="<%= url('/style.css') %>" rel='stylesheet'>
+
+  <%= erb :'_editor_head' %>
+</head>
+<body>
+
+
+<table width="100%" class="header">
+  <tr>
+    <td class="title">
+      <h1><a href="/">kramdown Online Editor</a></h1>
+    </td>
+    <td align="right">
+       <a href="/service">HTTP JSON API Service</a>  •
+       <a href="https://github.com/writekit/kramdown-service">About</a>
+    </td>
+  </tr>
+</table>
+
+
+<%= yield %>
+
+
+<div class="footer" align="center">
+    Brought to you by <a href="http://manuscripts.github.io">Manuscripts</a> and friends.
+</div>
+
+<%= erb :'_version' %>
+
+
+</body>
+</html>
