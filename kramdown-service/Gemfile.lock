@@ -1,7 +1,8 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    kramdown (1.10.0)
+    kramdown (2.3.0)
+      rexml
     kramdown-service (0.3.0)
       kramdown
       rouge
@@ -9,6 +10,7 @@ GEM
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
+    rexml (3.2.4)
     rouge (1.10.1)
     sinatra (1.4.7)
       rack (~> 1.5)
@@ -17,6 +19,7 @@ GEM
     tilt (2.0.2)
 
 PLATFORMS
+  ruby
   x86-mingw32
 
 DEPENDENCIES
