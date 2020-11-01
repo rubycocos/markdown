@@ -10,6 +10,9 @@ Gems:
 <!-- break -->
 - [kramdown-service](kramdown-service)  - kramdown HTTP JSON API service (convert markdown to HTML or LaTeX)
 
+<!-- break -->
+- [markdown.note](markdown.note)  - another simple single-page, server-less markdown editor in javascript & hypertext
+
 
 
 
