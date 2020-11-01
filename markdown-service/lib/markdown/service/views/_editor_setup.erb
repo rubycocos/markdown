@@ -1,0 +1,26 @@
+<script>
+
+    $(document).ready( function () {
+      
+      /* NB: we need to use to_json (to escape newlines in string if present etc.)
+      */
+ 
+       markdown_note_new( {
+         welcome: {
+           markdown: <%= @welcome_markdown.to_json %>,
+           html:     <%= @welcome_html.to_json %>
+         }
+      } );
+      
+    });
+
+/*
+  <% Markdown.libs.each_with_index do |lib,i| %>
+       <%= "[#{i}] - #{lib}" %>
+  <% end %>
+*/
+
+/*  todo: check if loading image w/ relative path works  ??
+*/
+
+</script>

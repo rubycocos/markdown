@@ -1,0 +1,14 @@
+
+<h3>Markdown Libs</h3>
+
+<table>
+<%  Markdown.libs.each do |lib|
+      conv = Markdown.create_converter( lib )
+  %>
+<tr>
+  <td><%= lib %></td>
+  <td><%= conv.version %></td>
+  <td><!-- defaults to be done --></td>
+</tr>
+<% end %>
+</table>

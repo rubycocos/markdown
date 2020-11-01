@@ -1,0 +1,31 @@
+require 'hoe'
+require './lib/markdown/service/version.rb'
+
+Hoe.spec 'markdown-service' do
+
+  self.version = MarkdownService::VERSION
+
+  self.summary = 'markdown-service gem - markdown HTTP JSON API service'
+  self.description = summary
+
+  self.urls    = ['https://github.com/rubylibs/markdown-service']
+
+  self.author  = 'Gerald Bauer'
+  self.email   = 'webslideshow@googlegroups.com'
+  
+  self.extra_deps = [
+    ['markdown'],
+    ['sinatra'],
+  ]
+  
+  # switch extension to .markdown for gihub formatting
+  self.readme_file  = 'README.md'
+  self.history_file = 'HISTORY.md'
+
+  self.licenses = ['Public Domain']
+
+  self.spec_extras = {
+   required_ruby_version: '>= 1.9.2'
+  }
+
+end
