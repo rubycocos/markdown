@@ -8,10 +8,10 @@ Hoe.spec 'markdown' do
   self.summary = 'Markdown Engine Wrapper - Use Your Markdown Library of Choice'
   self.description = summary
 
-  self.urls    = ['https://github.com/rubylibs/markdown']
+  self.urls    = { home: 'https://github.com/rubylibs/markdown' }
 
   self.author  = 'Gerald Bauer'
-  self.email   = 'webslideshow@googlegroups.com'
+  self.email   = 'gerald.bauer@gmail.com'
 
   self.extra_deps = [
     ['props','>= 1.1.2'],

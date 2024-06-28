@@ -5,10 +5,10 @@
 
 # core and stlibs
 
-require 'helper'
+require_relative 'helper'
 
 
-class TestKramdown < MiniTest::Test
+class TestKramdown < Minitest::Test
 
   def setup
     puts 'enter setup'

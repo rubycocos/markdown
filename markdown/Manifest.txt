@@ -13,6 +13,3 @@ lib/markdown/engines/redcarpet.rb
 lib/markdown/engines/rpeg_markdown.rb
 lib/markdown/version.rb
 lib/markdown/wrapper.rb
-test/helper.rb
-test/test_kramdown.rb
-test/test_redcarpet.rb
