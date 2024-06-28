@@ -62,7 +62,7 @@ DEFAULTS_SERVICE = { 'libs' => [
 
       ## todo: use .markdown.yml?? or differnt name ??
       props_home_file = File.join( Env.home, 'markdown.yml' )
-      if File.exists?( props_home_file )
+      if File.exist?( props_home_file )
         puts "Loading home settings from '#{props_home_file}'..."
         @props = @props_home = Props.load_file( props_home_file, @props )
       end
@@ -70,7 +70,7 @@ DEFAULTS_SERVICE = { 'libs' => [
       # check for user settings (markdown.yml) in working folder
     
       props_work_file = File.join( '.', 'markdown.yml' )
-      if File.exists?( props_work_file )
+      if File.exist?( props_work_file )
         puts "Loading work settings from '#{props_work_file}'..."
         @props = @props_work = Props.load_file( props_work_file, @props )
       end

@@ -24,7 +24,7 @@ class Runner
       
     Markdown.extnames.include?( extname.downcase )
   end
-    
+
   def find_file_with_markdown_extension( fn )
     dirname  = File.dirname( fn )
     basename = File.basename( fn, '.*' )
@@ -33,8 +33,8 @@ class Runner
 
     Markdown.extnames.each do |e|
       newname = File.join( dirname, "#{basename}#{e}" ) 
-      logger.debug "File.exists? #{newname}"
-      return newname if File.exists?( newname )
+      logger.debug "File.exist? #{newname}"
+      return newname if File.exist?( newname )
     end  # each extension (e)
       
     nil   # not found; return nil
@@ -85,7 +85,7 @@ class Runner
         end
       end
     else  # assume it's a single file (check for missing extension)
-      if File.exists?( file_or_dir_or_pattern )
+      if File.exist?( file_or_dir_or_pattern )
         file = file_or_dir_or_pattern
         if has_markdown_extension?( file )
           logger.debug "  adding file '#{file}'..."
